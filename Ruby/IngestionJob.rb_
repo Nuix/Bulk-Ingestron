@@ -1,0 +1,818 @@
+#============================================================#
+# Represents an ingestion job and perform the ingestion work #
+#============================================================#
+class KeyStoreEntry
+	attr_accessor :key_file
+	attr_accessor :password
+	attr_accessor :evidence_name
+
+	def initialize(key_file,password,evidence_name=nil)
+		@key_file = key_file
+		@password = password
+		@evidence_name = evidence_name
+	end
+end
+
+require 'csv'
+class IngestionJob
+	class << self
+		attr_accessor :processing_settings
+		attr_accessor :ocr_settings
+		attr_accessor :parallel_processing_settings
+		attr_accessor :evidence_settings
+		attr_accessor :general_settings
+		attr_accessor :mime_type_settings
+		attr_accessor :elastic_case_settings
+
+		attr_accessor :error_report_path
+		attr_accessor :success_report_path
+
+		attr_accessor :key_store_data
+
+		def load_processing_settings(path)
+			Logger.log("Loading Processing Settings: #{path}")
+			@processing_settings = JSON.parse(File.read(path))
+		end
+
+		def load_ocr_settings(path)
+			Logger.log("Loading OCR Settings: #{path}")
+			@ocr_settings = JSON.parse(File.read(path))
+		end
+
+		def load_parallel_processing_settings(path)
+			Logger.log("Loading Parallel Processing Settings: #{path}")
+			@parallel_processing_settings = JSON.parse(File.read(path))
+		end
+
+		def load_evidence_settings(path)
+			Logger.log("Loading Evidence Settings: #{path}")
+			@evidence_settings = JSON.parse(File.read(path))
+		end
+
+		def load_general_settings(path)
+			Logger.log("Loading General Settings: #{path}")
+			@general_settings = JSON.parse(File.read(path))
+			if @general_settings.has_key?("keyStoreFile")
+				if !@general_settings["keyStoreFile"].strip.empty?
+					if java.io.File.new(@general_settings["keyStoreFile"]).exists
+						key_store_file = @general_settings["keyStoreFile"]
+						Logger.log("Loading key store data from: #{key_store_file}")
+						@key_store_data = []
+						CSV.foreach(key_store_file,{:headers => :first_row}) do |row|
+							# Keystore format:
+							# 0: keyfile
+							# 1: password
+							# 2: evidence name (optional)
+							keyfile = row[0]
+							password = row[1]
+							evidence_name = nil
+							if row.size > 2
+								evidence_name = row[2]
+							end
+							@key_store_data << KeyStoreEntry.new(keyfile,password,evidence_name)
+						end
+						Logger.log("Loaded #{@key_store_data.size} key entries")
+					end
+				end
+			end
+		end
+
+		def load_elastic_case_settings(path)
+			@elastic_case_settings = {}
+			if java.io.File.new(path).exists
+				Logger.log("Loading Elastic Case Settings: #{path}")
+				cluster_data = JSON.parse(File.read(path))
+				cluster_data["clusters"].each do |cluster_entry|
+					Logger.log(cluster_entry.inspect)
+					@elastic_case_settings[cluster_entry["cluster.name"]] = cluster_entry
+				end
+			end
+		end
+
+		def load_mime_type_settings(path)
+			Logger.log("Loading Mime Type Settings: #{path}")
+			@mime_type_settings = []
+			headers = nil
+			row_num = 0
+			available_mime_types = {}
+			$utilities.getItemTypeUtility.getAllTypes.each do |type|
+				available_mime_types[type.getName] = true
+			end
+			CSV.foreach(path) do |row|
+				if headers.nil?
+					headers = row.map{|c|c.strip.downcase}
+				else
+					#Convert row to Hash
+					data = {}
+					row.each_with_index{|c,i| data[headers[i]] = c}
+
+					mime_type = data["mimetype"]
+					if mime_type.nil? || mime_type.empty?
+						puts "Invalid mime type at row #{row_num}, skipping"
+					else
+						mime_type_setting = {
+							"mimetype" => mime_type,
+							"settings" => {
+								"enabled" => (data["enabled"] || "true").downcase == "true",
+								"processEmbedded" => (data["processembedded"] || "true").downcase == "true",
+								"processNamedEntities" => (data["processnamedentities"] || "true").downcase == "true",
+								"processImages" => (data["processimages"] || "true").downcase == "true",
+								"storeBinary" => (data["storebinary"] || "true").downcase == "true",
+							}
+						}
+
+						# Have to handle these in a weird way in 7.2
+						text_strip = (data["textstrip"] || "false").downcase == "true"
+						process_text = (data["processtext"] || "true").downcase == "true"
+
+						if text_strip == true
+							mime_type_setting["settings"]["textstrip"] = true
+						else
+							mime_type_setting["settings"]["processText"] = process_text
+						end
+
+						@mime_type_settings << mime_type_setting
+					end
+				end
+				row_num += 1
+			end
+
+			unrecognized_mime_types = []
+			#Validate provided mime types
+			@mime_type_settings.each do |setting|
+				if available_mime_types[setting["mimetype"]] != true
+					unrecognized_mime_types << setting["mimetype"]
+				end
+			end
+
+			if unrecognized_mime_types.size > 0
+				Logger.log("Unrecognized Mime Types: #{unrecognized_mime_types.size}")
+				Logger.log("Ignore Unknown Mime Types: #{@general_settings["ignoreUnknownMimeTypes"]}")
+				Logger.log("The following mime types in MimeTypeSettings.csv are not recognized:")
+				unrecognized_mime_types.each do |mime_type|
+					Logger.log("\t#{mime_type}")
+				end
+				if @general_settings["ignoreUnknownMimeTypes"] != true
+					raise "MimeTypeSettings.csv contains unknown mime types, user specified to not ignore this in GeneralSettings.json"
+				else
+					Logger.log("User specified to ignore this in GeneralSettings.json, processing will proceed without these mime types being configured")
+					@mime_type_settings = @mime_type_settings.reject{|s| unrecognized_mime_types.include?(s["mimetype"])}
+				end
+			end
+		end
+
+		def non_default_mime_settings
+			return @mime_type_settings.select do |setting|
+				next true if setting["settings"]["enabled"] != true
+				next true if setting["settings"]["processEmbedded"] != true
+				next true if setting["settings"]["processText"] != true
+				next true if setting["settings"]["textStrip"] != false
+				next true if setting["settings"]["processNamedEntities"] != true
+				next true if setting["settings"]["processImages"] != true
+				next true if setting["settings"]["storeBinary"] != true
+				next false
+			end
+		end
+
+		def denil(value)
+			if value.nil?
+				return "NUIX DEFAULT"
+			else
+				return value
+			end
+		end
+
+		def dump_settings
+			Logger.log("== General Settings ==")
+			@general_settings.each{|k,v| Logger.log("\t#{k} => #{denil(v)}") }
+			Logger.log("\tError Report File: #{IngestionJob.error_report_path}")
+			Logger.log("\tSuccess Report File: #{IngestionJob.success_report_path}")
+			
+			Logger.log("== Processing Settings ==")
+			@processing_settings.each{|k,v| Logger.log("\t#{k} => #{denil(v)}") }
+			
+			Logger.log("== Parallel Processing Settings ==")
+			@parallel_processing_settings.each{|k,v| Logger.log("\t#{k} => #{denil(v)}") }
+			
+			Logger.log("== General Evidence Settings ==")
+			@evidence_settings.each{|k,v| Logger.log("\t#{k} => #{denil(v)}") }
+			
+			Logger.log("== Non Default MimeType Settings ==")
+			non_default_mime_settings.each do |k|
+				pieces = []
+				pieces << k["mimetype"]
+				k["settings"].each do |sk,sv|
+					pieces << "#{sk}: #{sv}"
+				end
+				line = pieces.join(", ")
+				Logger.log("\t#{line}")
+			end
+
+			if @general_settings["performOcrPostIngestion"]
+				Logger.log("== OCR Settings ==")
+				@ocr_settings.each{|k,v| Logger.log("\t#{k} => #{denil(v)}") }
+			end
+		end
+
+		def from_record(record,headers)
+			instance = new
+			instance.case_name = record[0] ||= ""
+			instance.case_directory = record[1] ||= ""
+			instance.cluster_name = record[2] ||= ""
+			instance.evidence_name = record[3] ||= ""
+			instance.evidence_comments = record[4] ||= ""
+			instance.custodian_name = record[5] ||= ""
+			instance.source_path = record[6] ||= ""
+
+			col = 7
+			while !headers[col].nil? && !headers[col].strip.empty?
+				instance.custom_metadata[headers[col].strip] = record[col] || ""
+				col += 1
+			end
+
+			#handle some defaults
+			if instance.evidence_name.strip.empty?
+				instance.evidence_name = File.basename("#{Time.now.strftime("%Y%m%d %H:%M:%S")}_#{instance.source_path}")
+			end
+
+			if instance.case_name.strip.empty?
+				instance.case_name = "ScriptCreatedCase_#{Time.now.strftime("%Y%m%d_%H-%M-%S")}"
+			end
+
+			return instance
+		end
+
+		def validate_headers(path,headers)
+			# Make sure user has minimum number of required columns, this hopefully should help with catching
+			# when user provides old format CSV without the additional "Cluster Name" column, at least when they
+			# are not providing any custom metadata columns
+			required_headers_present = true
+			wrong_header = ""
+			expected_headers = [
+				"Case Name",
+				"Case Directory",
+				"Cluster Name",
+				"Evidence Name",
+				"Evidence Comments",
+				"Custodian",
+				"Source Path",
+			]
+
+			expected_headers.each_with_index do |expected_header,header_index|
+				if expected_header.downcase.strip != headers[header_index].downcase.strip
+					wrong_header = "#{header_index+1}) Got '#{headers[header_index]}' but expected '#{expected_header}'"
+					required_headers_present = false
+					break
+				end
+			end
+
+			if !required_headers_present
+				message = []
+				message << "Input CSV '#{path}' does not appear to have the minimum required columns or they may be in the wrong order!"
+				message << "Please make sure at least the following columns are present in this order:"
+				expected_headers.each_with_index do |expected_header,header_index|
+					message << "#{header_index+1}) #{expected_header}"
+				end
+				message << "Headers in provided input CSV:"
+				headers.each_with_index do |header,header_index|
+					message << "#{header_index+1}) #{header}"
+				end
+				message << "The issue seems to be with:"
+				message << wrong_header
+				Logger.log(message.join("\n"))
+			end
+			return required_headers_present
+		end
+
+		def from_csv(path)
+			result = []
+			headers = nil
+			CSV.foreach(path) do |row|
+				if headers.nil?
+					headers = row
+					Logger.log("CSV Headers:")
+					headers.each do |header|
+						Logger.log("\t#{header}")
+					end
+					validation_result = validate_headers(path,headers)
+					break if validation_result == false
+				else
+					result << from_record(row,headers)
+				end
+			end
+			return result
+		end
+
+		def report(job)
+			if job.state == :error
+				report_error(job)
+			else
+				report_success(job)
+			end
+		end
+
+		def report_error(job)
+			if !java.io.File.new(IngestionJob.error_report_path).exists
+				CSV.open(IngestionJob.error_report_path,"w:utf-8") do |csv|
+					headers = [
+						"Case Name",
+						"Case Directory",
+						"Evidence Name",
+						"Evidence Comments",
+						"Custodian Name",
+						"Source Path",
+					]
+
+					job.custom_metadata.each do |k,v|
+						headers << k
+					end
+
+					headers += [
+						"Error Message",
+					]
+
+					csv << headers
+				end
+			end
+
+			CSV.open(IngestionJob.error_report_path,"a:utf-8") do |csv|
+				csv << [
+					job.case_name,
+					job.case_directory,
+					job.evidence_name,
+					job.evidence_comments,
+					job.custodian_name,
+					job.source_path,
+					job.message,
+				]
+			end
+		end
+
+		def report_success(job)
+			if !java.io.File.new(IngestionJob.success_report_path).exists
+				CSV.open(IngestionJob.success_report_path,"w:utf-8") do |csv|
+					headers = [
+						"Case Name",
+						"Case Directory",
+						"Evidence Name",
+						"Evidence Comments",
+						"Custodian Name",
+						"Source Path",
+					]
+
+					job.custom_metadata.each do |k,v|
+						headers << k
+					end
+
+					headers += [
+						"Total Item Count",
+						"Total Emails Count",
+						"Total Audited Item Count",
+						"Total Audited Size GB",
+						"Total OCR Items",
+						"Ingestion Elapsed",
+						"OCR Elapsed",
+						"Total Elapsed",
+					]
+
+					csv << headers
+				end
+			end
+
+			CSV.open(IngestionJob.success_report_path,"a:utf-8") do |csv|
+				row = [
+					job.case_name,
+					job.case_directory,
+					job.evidence_name,
+					job.evidence_comments,
+					job.custodian_name,
+					job.source_path,
+				]
+
+				job.custom_metadata.each do |k,v|
+					row << v
+				end
+
+				row += [
+					job.total_item_count,
+					job.total_emails,
+					job.total_audited_items,
+					(job.total_audited_size.to_f / (1000.0 ** 3.0)),
+					job.ocr_items_count,
+					job.ingestion_elapsed_seconds.to_elapsed,
+					job.ocr_elapsed_seconds.to_elapsed,
+					(job.ingestion_elapsed_seconds + job.ocr_elapsed_seconds).to_elapsed,
+				]
+
+				csv << row
+			end
+		end
+	end
+
+	attr_accessor :case_name
+	attr_accessor :case_directory
+	attr_accessor :cluster_name
+	attr_accessor :evidence_name
+	attr_accessor :evidence_comments
+	attr_accessor :custodian_name
+	attr_accessor :source_path
+	attr_accessor :custom_metadata
+
+	attr_accessor :state
+	attr_accessor :message
+
+	attr_accessor :total_item_count
+	attr_accessor :total_emails
+	attr_accessor :total_audited_items
+	attr_accessor :total_audited_size
+	attr_accessor :ocr_items_count
+
+	attr_accessor :ingestion_elapsed_seconds
+	attr_accessor :ocr_elapsed_seconds
+
+	def initialize
+		@state = :ok
+		@custom_metadata = {}
+		@ocr_items_count = 0
+		@ingestion_elapsed_seconds = 0
+		@ocr_elapsed_seconds = 0
+	end
+
+	def dump_job_info
+		Logger.log("Case Name: #{@case_name}")
+		Logger.log("Case Directory: #{@case_directory}")
+		Logger.log("Cluster Name: #{@cluster_name}")
+		Logger.log("Evidence Name: #{@evidence_name}")
+		Logger.log("Evidence Comments: #{@evidence_comments}")
+		Logger.log("Custodian name: #{@custodian_name}")
+		Logger.log("Source Paths:")
+		@source_path.split(";").each do |path|
+			Logger.log("\t#{path}")
+		end
+		Logger.log("Evidence Custom Metadata:")
+		@custom_metadata.each do |k,v|
+			Logger.log("\t#{k} = #{v}")
+		end
+	end
+
+	#Gets existing case or creates a new case
+	def get_case
+		nuix_case = nil
+		case_factory = $utilities.getCaseFactory
+		if !java.io.File.new("#{@case_directory}\\case.fbi2").exists && IngestionJob.general_settings["performIngestion"]
+			if !@cluster_name.strip.empty?
+				Logger.log("Creating Elastic Search case: #{@case_directory}")
+				elastic_settings = @elastic_case_settings[@cluster_name]
+				elastic_settings.delete("notes")
+				Logger.log("Elastic Search case settings:")
+				elastic_settings.each do |key,value|
+					puts "\t#{key} => #{value.inspect}"
+				end
+
+				# Create a new case with the additional elastic search settings
+				# as loaded from JSON file based on cluster name user provided in
+				# the input CSV for this entry
+				nuix_case = case_factory.create(@case_directory,{
+					"compound" => false,
+					"name" => @case_name,
+					"elasticSearchSettings" => elastic_settings,
+				})
+			else
+				Logger.log("Creating case: #{@case_directory}")
+				# Create a new case in traditional file system based format
+				nuix_case = case_factory.create(@case_directory,{
+					"compound" => false,
+					"name" => @case_name,
+				})
+			end
+		else
+			Logger.log("Opening Case: #{@case_directory}")
+			begin
+				nuix_case = case_factory.open(@case_directory,{:migrate => IngestionJob.general_settings["allowCaseMigration"]})
+			rescue Exception => exc
+				record_error("Error while opening existing case: #{exc.message}")
+			end
+		end
+		return nuix_case
+	end
+
+	#Records errors about job and marks job as having an error
+	def record_error(message)
+		@state = :error
+		@message = "!!! #{message} !!!"
+		Logger.log(@message)
+	end
+
+	#Perform ingestion
+	def ingest_data(nuix_case)
+		if IngestionJob.general_settings["performIngestion"]
+			ingestion_start_time = Time.now
+			#Setup processor
+			begin
+				current_nuix_version = NuixVersion.current
+				processor = nil
+				if current_nuix_version < 6.2
+					processor = nuix_case.getProcessor
+				else
+					processor = nuix_case.createProcessor
+				end
+				processor.setProcessingSettings(IngestionJob.processing_settings)
+				processor.setParallelProcessingSettings(IngestionJob.parallel_processing_settings)
+				mime_type_errors = 0
+				IngestionJob.non_default_mime_settings.each do |entry|
+					begin
+						processor.setMimeTypeProcessingSettings(entry["mimetype"],entry["settings"])
+					rescue Exception => exc
+						message = "** Error setting mime type: #{exc.message} **"
+						Logger.log(message)
+						mime_type_errors += 1
+					end
+				end
+
+				if mime_type_errors > 0
+					record_error("Errors occurred while configuring mime type settings!")
+				end
+
+				# Load up key store data if we have some
+				if !IngestionJob.key_store_data.nil? && IngestionJob.key_store_data.size > 0
+					IngestionJob.key_store_data.each do |key_store_entry|
+						# If the keystore entry has an associated evidence name
+						# then only add that entry if the current evidence name matches
+						if !key_store_entry.evidence_name.nil? && !key_store_entry.evidence_name.strip.empty?
+							if @evidence_name.downcase != key_store_entry.evidence_name.downcase
+								next
+							end
+						end
+						# Add this entry to the processor key store
+						j_key_file = java.io.File.new(key_store_entry.key_file)
+						Logger.log("Adding Key Store Entry to Processor:")
+						Logger.log("\tKey File: #{key_store_entry.key_file}")
+						Logger.log("\tPassword: #{key_store_entry.password.gsub(/./,"*")}")
+						processor.addKeyStore(j_key_file,{
+							"filePassword" => key_store_entry.password,
+							"target" => "*",
+						})
+					end
+				else
+					Logger.log("No Key Store Data to Load")
+				end
+
+				semaphore = Mutex.new
+				processed_approx_count = 0
+				processor.whenItemProcessed do |info|
+					semaphore.synchronize {
+						processed_approx_count += 1
+						if processed_approx_count % 5000 == 0 && processed_approx_count > 0
+							Logger.log(processed_approx_count)
+						end
+					}
+				end
+			rescue Exception => e
+				record_error("Error while creating processor: #{e.message}")
+				Logger.log_file_only(e.backtrace.join("\n"))
+				return
+			end
+
+			#Configure evidence
+			begin
+				evidence_container = processor.newEvidenceContainer(@evidence_name)
+				evidence_container.setDescription(@evidence_comments)
+				encoding = IngestionJob.evidence_settings["encoding"]
+				if !encoding.nil? && !encoding.strip.empty?
+					evidence_container.setEncoding(encoding)
+				end
+				timezone = IngestionJob.evidence_settings["timezone"]
+				if !timezone.nil? && !timezone.strip.empty?
+					evidence_container.setTimeZone(timezone)
+				end
+				evidence_container.setInitialCustodian(@custodian_name)
+				@source_path.split(";").each do |path|
+					evidence_container.addFile(path.strip)
+				end
+				if @custom_metadata.size > 0
+					evidence_container.setCustomMetadata(@custom_metadata)
+				end
+				evidence_container.save
+			rescue Exception => e
+				record_error("Error while creating evidence: #{e.message}")
+				Logger.log_file_only(e.backtrace.join("\n"))
+				return
+			end
+
+			#Begin processing
+			Logger.log("Processing Started")
+			begin
+				load_job = processor.processAsync
+				while true
+					break if load_job.hasFinished
+					if SleepScheduler.sleep_now?
+						Logger.log("Today's Sleep Schedule: #{SleepScheduler.todays_sleep_schedule}")
+						Logger.log("Current Time: #{Time.now}")
+						Logger.log("Asked Load job to pause...")
+						load_job.pause
+						Logger.log("Entering sleep loop...")
+						SleepScheduler.sleep_until_stop
+						load_job.resume
+					else
+						sleep(15)
+					end
+				end
+			rescue Exception => e
+				record_error("Error while processing data: #{e.message}")
+				Logger.log_file_only(e.backtrace.join("\n"))
+				return
+			end
+			ingestion_finish_time = Time.now
+			@ingestion_elapsed_seconds = ingestion_finish_time - ingestion_start_time
+			Logger.log("Processing Ended in #{@ingestion_elapsed_seconds.to_elapsed}")
+		else
+			Logger.log("User specified to not perform ingestion, skipping")
+		end
+	end
+
+	def perform_ocr(nuix_case)
+		if IngestionJob.general_settings["performOcrPostIngestion"]
+			ocr_start_time = Time.now
+			begin
+				Logger.log("User specified to perform OCR")
+				Logger.log("OCR Item Query: #{IngestionJob.general_settings["postIngestionOcrQuery"]}")
+				# Locate evidence item
+				evidence_item = nuix_case.searchUnsorted("mime-type:\"application/vnd.nuix-evidence\"").select{|i|i.getName == @evidence_name}.first
+				if evidence_item.nil?
+					raise "There does not appear to be an evidence item named: #{@evidence_name}"
+				end
+				# Evidence scope is path guid against evidence item guid (so all descendants)
+				evidence_scope_query = "path-guid:\"#{evidence_item.getGuid}\""
+				Logger.log("Evidence Scope Query: #{evidence_scope_query}")
+				scoped_ocr_item_query = [
+					evidence_scope_query,
+					IngestionJob.general_settings["postIngestionOcrQuery"],
+				].select{|p| !p.nil? && !p.strip.empty?}.map{|p|"(#{p})"}.join(" AND ")
+				Logger.log("Scoped OCR Item Query: #{scoped_ocr_item_query}")
+				Logger.log("Locating OCR Items...")
+				ocr_items = nuix_case.search(scoped_ocr_item_query)
+				@ocr_items_count = ocr_items.size
+				Logger.log("OCR Items Located: #{@ocr_items_count}")
+				if ocr_items.size < 1
+					Logger.log("Skipping OCR, no items found")
+				else
+					Logger.log("Obtaining OCR Processor...")
+					ocr_processor = nil
+					if NuixVersion.current < 7.0
+						ocr_processor = $utilities.getOcrProcessor
+					else
+						ocr_processor = $utilities.createOcrProcessor
+					end
+					Logger.log("Setting OCR Parallel Processing Settings...")
+					ocr_processor.setParallelProcessingSettings(IngestionJob.parallel_processing_settings)
+					last_progress = Time.now
+					semaphore = Mutex.new
+					ocr_processor.whenItemEventOccurs do |info|
+						semaphore.synchronize {
+							if ((Time.now - last_progress) > (60 * 15) || (info.getStageCount % 5000) == 0) && info.getStageCount > 0
+								last_progress = Time.now
+								Logger.log("#{info.getStage}: #{info.getStageCount}")
+							end
+						}
+					end
+					Logger.log("Beginning OCR...")
+
+					# Support for OCR profiles
+					ocr_job = nil
+					ocr_profile_name = IngestionJob.ocr_settings["ocrProfileName"]
+					if NuixVersion.current >= 7.4 && !ocr_profile_name.nil? && !ocr_profile_name.strip.empty?
+						ocr_processor.setOcrProfile(ocr_profile_name)
+						ocr_job = ocr_processor.processAsync(ocr_items)
+					else
+						# Now that OcrSettings.json may contain the key ocrProfileName (something Nuix won't recognize)
+						# we need to build a copy of that hash that we can pass to Nuix without that key just to make
+						# sure Nuix doesn't get upset now or in the future
+						ocr_settings = {}
+						IngestionJob.ocr_settings.each do |k,v|
+							next if k == "ocrProfileName"
+							ocr_settings[k] = v
+						end
+						ocr_job = ocr_processor.processAsync(ocr_items,ocr_settings)
+					end
+
+					while true
+						break if ocr_job.hasFinished
+						if SleepScheduler.sleep_now?
+							Logger.log("Today's Sleep Schedule: #{SleepScheduler.todays_sleep_schedule}")
+							Logger.log("Current Time: #{Time.now}")
+							Logger.log("Asked OCR job to pause...")
+							ocr_job.pause
+							Logger.log("Entering sleep loop...")
+							SleepScheduler.sleep_until_stop
+							ocr_job.resume
+						else
+							sleep(15)
+						end
+					end
+					Logger.log("OCR Completed")
+				end
+			rescue Exception => exc
+				record_error("Error while performing OCR: #{exc.message}")
+				Logger.log_file_only(exc.backtrace.join("\n"))
+			end
+			ocr_finish_time = Time.now
+			@ocr_elapsed_seconds = ocr_finish_time - ocr_start_time
+			Logger.log("OCR Elapsed #{@ocr_elapsed_seconds.to_elapsed}")
+		else
+			Logger.log("User specified not to perform OCR, skipping OCR step")
+		end
+	end
+
+	#Collect data about a successfully ingested job
+	def collect_case_data(nuix_case)
+		begin
+			query_pieces = []
+			Logger.log("Collecting case data...")
+			# Locate evidence item
+			evidence_item = nuix_case.searchUnsorted("mime-type:\"application/vnd.nuix-evidence\"").select{|i|i.getName == @evidence_name}.first
+			if evidence_item.nil?
+				raise "There does not appear to be an evidence item named: #{@evidence_name}"
+			end
+			# Evidence scope is path guid against evidence item guid (so all descendants)
+			evidence_scope_query = "path-guid:\"#{evidence_item.getGuid}\""
+			query_pieces << evidence_scope_query
+			Logger.log("Evidence Scope Query: #{evidence_scope_query}")
+			# Include any additional reporting scope user may have provided
+			if !IngestionJob.general_settings["additionalReportingScope"].nil? && !IngestionJob.general_settings["additionalReportingScope"].strip.empty?
+				query_pieces << IngestionJob.general_settings["additionalReportingScope"]
+				Logger.log("Additional Reporting Scope: #{IngestionJob.general_settings["additionalReportingScope"]}")
+			end
+			all_evidence_items_query = query_pieces.map{|p|"(#{p})"}.join(" AND ")
+			audited_evidence_items_query = (query_pieces + ["flag:audited"]).map{|p|"(#{p})"}.join(" AND ")
+			email_evidence_items_query = (query_pieces + ["kind:email"]).map{|p|"(#{p})"}.join(" AND ")
+
+			Logger.log("All Evidence Items Query: #{all_evidence_items_query}")
+			Logger.log("Audited Evidence Items Query: #{audited_evidence_items_query}")
+			Logger.log("Email Evidence Items Query: #{email_evidence_items_query}")
+
+			#Determine all evidence item count
+			@total_item_count = nuix_case.count(all_evidence_items_query)
+			#Get evidence audited items, record count and size
+			audited_items = nuix_case.searchUnsorted(audited_evidence_items_query)
+			@total_audited_items = audited_items.size
+			@total_audited_size = audited_items.map{|i|i.getAuditedSize}.reject{|s|s<0}.reduce(0,:+)
+			#Get evidence email count
+			@total_emails = nuix_case.count(email_evidence_items_query)
+
+			Logger.log("All Evidence Items: #{@total_item_count}")
+			Logger.log("Audited Evidence Items: #{@total_audited_items}")
+			Logger.log("Audited Evidence Items Size: #{@total_audited_size}")
+			Logger.log("Audited Evidence Items Size GB: #{@total_audited_size.to_gb}")
+			Logger.log("Email Evidence Items: #{@total_emails}")
+		rescue Exception => exc
+			record_error("Error while generating report information: #{exc.message}")
+			Logger.log_file_only(exc.backtrace.join("\n"))
+		end
+	end
+
+	#Block may or may not be provided and will be executed before sleep loop is entered
+	def sleep_now?(&block)
+		if SleepScheduler.sleep_now?
+			Logger.log("Today's Sleep Schedule: #{SleepScheduler.todays_sleep_schedule}")
+			Logger.log("Current Time: #{Time.now}")
+			if block_given?
+				block.call
+			end
+			Logger.log("Entering sleep loop...")
+			SleepScheduler.sleep_until_stop
+		end
+	end
+
+	#Calls the other steps
+	def go
+		dump_job_info
+		if @case_directory.strip.empty?
+			record_error("Invalid case directory provided, skipping")
+		end
+		if @evidence_name.strip.empty?
+			record_error("Evidence name cannot be empty")
+		end
+		if IngestionJob.general_settings["performIngestion"]
+			if @source_path.strip.empty?
+				record_error("Empty source path provided, skipping")
+			else
+				@source_path.split(";").each do |path|
+					if !java.io.File.new(path.strip).exists
+						record_error("Invalid source path: #{path.strip}")
+					end
+				end
+			end
+		end
+		sleep_now?
+		nuix_case = get_case
+		sleep_now?
+		ingest_data(nuix_case) if @state != :error
+		collect_case_data(nuix_case) if @state != :error
+		sleep_now?
+		perform_ocr(nuix_case) if @state != :error
+		Logger.log("Closing Case")
+		nuix_case.close if !nuix_case.nil?
+		Logger.log("Reporting Case Results")
+		IngestionJob.report(self)
+	end
+end

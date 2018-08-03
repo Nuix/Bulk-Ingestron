@@ -1,0 +1,705 @@
+Kind,LocalisedName,PreferredExtension,MimeType,Enabled,ProcessEmbedded,ProcessText,TextStrip,ProcessNamedEntities,ProcessImages,StoreBinary
+calendar,Exchange Web Services Appointment,,server/exchange-ews-appointment,true,true,true,false,true,true,true
+calendar,Lotus Domino XML Appointment,xml,application/vnd.lotus-domino-xml-appointment-document,true,true,true,false,true,true,true
+calendar,Microsoft Entourage Appointment,old14event,application/vnd.ms-entourage-appointment,true,true,true,false,true,true,true
+calendar,Microsoft Outlook Appointment,msg,application/vnd.ms-outlook-appointment,true,true,true,false,true,true,true
+calendar,Microsoft Outlook Mac Appointment,,application/vnd.ms-outlook-mac-appointment,true,true,true,false,true,true,true
+calendar,Microsoft Outlook Schedule,msg,application/vnd.ms-outlook-schedule,true,true,true,false,true,true,true
+calendar,iCalendar Entry,ics,text/calendar-entry,true,true,true,false,true,true,true
+contact,Address Book Contact,,application/x-contact,true,true,true,false,true,true,true
+contact,Exchange Web Services Contact,,server/exchange-ews-contact,true,true,true,false,true,true,true
+contact,Lotus Domino XML Person Document,xml,application/vnd.lotus-domino-xml-person-document,true,true,true,false,true,true,true
+contact,Microsoft Entourage Contact,olk14contact,application/vnd.ms-entourage-contact,true,true,true,false,true,true,true
+contact,Microsoft Outlook Contact,msg,application/vnd.ms-outlook-contact,true,true,true,false,true,true,true
+contact,Microsoft Outlook Mac Contact,,application/vnd.ms-outlook-mac-contact,true,true,true,false,true,true,true
+contact,Skype Contact,,application/vnd.skype-contact,true,true,true,false,true,true,true
+contact,vCard Contact,vcf,text/vcard-contact,true,true,true,false,true,true,true
+container,3D Photo Browser Thumbnail Container,obv,application/vnd.3d-photo-browser-thumbnail-cache,true,true,true,false,true,true,true
+container,7-Zip Archive File,7z,application/x-7z-compressed,true,true,true,false,true,true,true
+container,ABC View Thumbnail Container,abt,application/vnd.abc-view-manager-thumbnail-cache,true,true,true,false,true,true,true
+container,ACDSee Thumbnail Container,fpt,application/vnd.acdsee-thumbnail-cache,true,true,true,false,true,true,true
+container,ACE Archive File,ace,application/x-ace,true,true,true,false,true,true,true
+container,ALZip Archive File,alz,application/x-alzip-compressed,true,true,true,false,true,true,true
+container,ALZip Native Archive File,egg,application/x-egg-compressed,true,true,true,false,true,true,true
+container,AOL Personal Filing Cabinet File,pfc,application/vnd.aol-personal-filing-cabinet,true,true,true,false,true,true,true
+container,AOS File List,,application/vnd.aos-filelist,true,true,true,false,true,true,true
+container,AXS-One Email Archive,pgi,application/vnd.axs-one-pgi-email-archive,true,true,true,false,true,true,true
+container,AccessData FTK Image,ad1,application/vnd.accessdata-ftk-imager,true,true,true,false,true,true,true
+container,Adobe Lightroom Cache,lrprev,application/vnd.adobe-photoshop-lightroom-cache,true,true,true,false,true,true,true
+container,Amazon S3 Account,,server/amazon-s3-account,true,true,true,false,true,true,true
+container,Amazon S3 Bucket,,server/amazon-s3-bucket,true,true,true,false,true,true,true
+container,Amazon S3 Folder,,server/amazon-s3-folder,true,true,true,false,true,true,true
+container,Apple Disk Image,dmg,application/x-apple-diskimage,true,true,true,false,true,true,true
+container,Apple File Vault 2 Encrypted Volume,,filesystem/x-filevault2,true,true,true,false,true,true,true
+container,Apple Mail.app Email File,emlx,application/vnd.apple-emlx,true,true,true,false,true,true,true
+container,Apple UDIF Disk Image,dmg,application/vnd.apple-udif,true,true,true,false,true,true,true
+container,Apple UDIF Sparse Bundle Disk Image,sparsebundle,application/vnd.apple-udif-sparsebundle,true,true,true,false,true,true,true
+container,Apple iCloud Account,,server/apple-icloud-account,true,true,true,false,true,true,true
+container,Apple iCloud Folder,,server/apple-icloud-folder,true,true,true,false,true,true,true
+container,Apple iOS Application File,ipa,application/vnd.apple-ios-app,true,true,true,false,true,true,true
+container,Apple iOS Device,,application/vnd.apple-ios-device,true,true,true,false,true,true,true
+container,AppleSingle File,,application/applefile,true,true,true,false,true,true,true
+container,Autonomy Load File,idx,application/vnd.autonomy-load-file,true,true,true,false,true,true,true
+container,AxCrypt Encrypted File,axx,application/x-axcrypt,true,true,true,false,true,true,true
+container,Becky! Email Container File,bmf,application/vnd.rimarts-becky-file,true,true,true,false,true,true,true
+container,Becky! Standard Email Container File,bks,application/vnd.rimarts-becky-mailbox,true,true,true,false,true,true,true
+container,Blackberry IPD Database,ipd,application/vnd.rim-blackberry-ipd,true,true,true,false,true,true,true
+container,Bloomberg Daily Text Dump,txt,application/vnd.bloomberg-text-dump,true,true,true,false,true,true,true
+container,Bloomberg Daily XML Dump,xml,application/vnd.bloomberg-xml-dump,true,true,true,false,true,true,true
+container,Bloomberg IM Daily XML Dump,xml,application/vnd.bloomberg-im-xml-dump,true,true,true,false,true,true,true
+container,Box Account,,server/box-account,true,true,true,false,true,true,true
+container,Box File,,server/box-file,true,true,true,false,true,true,true
+container,Box Folder,,server/box-folder,true,true,true,false,true,true,true
+container,Cellebrite UFDR Image,ufdr,application/vnd.cellebrite-ufdr-image,true,true,true,false,true,true,true
+container,Cellebrite XML Report,xml,application/vnd.cellebrite-xml-report,true,true,true,false,true,true,true
+container,Centera Clip Container,,application/vnd.emc-centera-eclip-xml,true,true,true,false,true,true,true
+container,Centera Cluster,,application/vnd.emc-centera-cluster,true,true,true,false,true,true,true
+container,Compressed ISO9660 Disk Image,cso,application/x-cso-image,true,true,true,false,true,true,true
+container,Concordance Load File,dat,application/vnd.concordance-load-file,true,true,true,false,true,true,true
+container,Concordance Opticon Load File,opt,application/vnd.concordance-opticon-load-file,true,true,true,false,true,true,true
+container,Directory,,filesystem/directory,true,true,true,false,true,true,true
+container,Disk Image,,application/x-disk-image,true,true,true,false,true,true,true
+container,Documentum Docbase,,server/documentum-docbase,true,true,true,false,true,true,true
+container,Documentum Folder,,server/documentum-folder,true,true,true,false,true,true,true
+container,Documentum Server,,server/documentum-server,true,true,true,false,true,true,true
+container,Drive,,filesystem/drive,true,true,true,false,true,true,true
+container,Dropbox Account,,server/dropbox-account,true,true,true,false,true,true,true
+container,Dropbox Folder,,server/dropbox-folder,true,true,true,false,true,true,true
+container,Dropbox Team Account,,server/dropbox-team-account,true,true,true,false,true,true,true
+container,EDRM XML Load File,xml,application/vnd.edrm-xml-load-file,true,true,true,false,true,true,true
+container,EmailXtender Archive,emx,application/vnd.emc-mailxtender,true,true,true,false,true,true,true
+container,EmailXtender EMC MF Container,,application/vnd.emc-mailxtender-emcmf,true,true,true,false,true,true,true
+container,EmailXtender Notes Message,onm,application/vnd.emc-mailxtender-notes-msg,true,true,true,false,true,true,true
+container,EnCase EVF2 Disk Image,ex01,application/vnd.guidance-encase-evf2,true,true,true,false,true,true,true
+container,EnCase EWC Disk Image,e01,application/vnd.guidance-encase,true,true,true,false,true,true,true
+container,EnCase LEF2 Logical Volume File,lx01,application/vnd.guidance-encase-lef2,true,true,true,false,true,true,true
+container,EnCase Logical Volume File,l01,application/vnd.guidance-encase-lvf,true,true,true,false,true,true,true
+container,Enterprise Box Account,,server/enterprise-box-account,true,true,true,false,true,true,true
+container,Enterprise Vault Archive,,server/enterprise-vault-archive,true,true,true,false,true,true,true
+container,Enterprise Vault Note Stream,,application/x-evnotestream,true,true,true,false,true,true,true
+container,Enterprise Vault Server,,server/enterprise-vault,true,true,true,false,true,true,true
+container,Enterprise Vault Vault,,server/enterprise-vault-vault,true,true,true,false,true,true,true
+container,Epic MegaGames / Digital Extremes Unreal Package File,,application/vnd.epic-unreal-package,true,true,true,false,true,true,true
+container,Everlaw Load File,dat,application/vnd.everlaw-load-file,true,true,true,false,true,true,true
+container,Everlaw Opticon Load File,opt,application/vnd.everlaw-opticon-load-file,true,true,true,false,true,true,true
+container,Evernote Database File,exb,application/vnd.evernote-database,true,true,true,false,true,true,true
+container,Evernote Notebook,,application/vnd.evernote-notebook,true,true,true,false,true,true,true
+container,Evernote Thumbnail Container File,thumbnail,application/vnd.evernote-thumbnail-container,true,true,true,false,true,true,true
+container,Exchange Web Services Account,,server/exchange-ews,true,true,true,false,true,true,true
+container,Exchange Web Services Folder,,server/exchange-ews-folder,true,true,true,false,true,true,true
+container,ExifPro Thumbnail Cache,bin,application/vnd.exifpro-thumbnail-cache,true,true,true,false,true,true,true
+container,Facebook Dump,zip,application/vnd.facebook-dump,true,true,true,false,true,true,true
+container,Facebook Dump Album,,application/vnd.facebook-dump-album,true,true,true,false,true,true,true
+container,FileCenter Thumbnail Cache,album,application/vnd.filecenter-thumbnail-cache,true,true,true,false,true,true,true
+container,GWAVA ASDoc File,,application/vnd.gwava-asdoc,true,true,true,false,true,true,true
+container,Google Android ADB Backup,ab,application/vnd.google-android-adb-backup,true,true,true,false,true,true,true
+container,Google Android Device,,application/vnd.google-android-device,true,true,true,false,true,true,true
+container,Google Android Package File,apk,application/vnd.google-android-package,true,true,true,false,true,true,true
+container,Google Drive Account,,server/google-drive-account,true,true,true,false,true,true,true
+container,Google Drive Folder,,server/google-drive-folder,true,true,true,false,true,true,true
+container,HP Photo Creations Image Container,jpg,application/vnd.hp-photo-creations,true,true,true,false,true,true,true
+container,IMAP Mail Account,,server/imap,true,true,true,false,true,true,true
+container,IMAP Mail Folder,,server/imap-folder,true,true,true,false,true,true,true
+container,ISO9660 CD-ROM Disk Image,iso,application/x-iso-image,true,true,true,false,true,true,true
+container,InControl Load File,dat,application/vnd.incontrol-load-file,true,true,true,false,true,true,true
+container,InControl Opticon Load File,opt,application/vnd.incontrol-opticon-load-file,true,true,true,false,true,true,true
+container,Java Archive,jar,application/java-archive,true,true,true,false,true,true,true
+container,Koomail Mail File,sml,application/vnd.koomail-sml,true,true,true,false,true,true,true
+container,LZH Archive File,lzh,application/x-lzh-archive,true,true,true,false,true,true,true
+container,LZMA Compressed File,lzma,application/x-lzma,true,true,true,false,true,true,true
+container,LZX Archive File,lzx,application/x-lzx,true,true,true,false,true,true,true
+container,Linux LVM Physical Volume,,filesystem/x-lvm-physical-volume,true,true,true,false,true,true,true
+container,Lotus Notes Database,nsf,application/vnd.lotus-notes,true,true,true,false,true,true,true
+container,Lotus Notes View,,application/vnd.lotus-notes-view,true,true,true,false,true,true,true
+container,MacBinary Archive,macbin,application/macbinary,true,true,true,false,true,true,true
+container,Mailbox File,mbox,application/mbox,true,true,true,false,true,true,true
+container,Micro Systemation XRY Image,xry,application/vnd.msab-xry,true,true,true,false,true,true,true
+container,Micro Systemation XRY XML/ZIP Image,zip,application/vnd.msab-xry-xml-zip,true,true,true,false,true,true,true
+container,Microforensics FileSafe Archive,mfs01,application/vnd.microforensics-filesafe,true,true,true,false,true,true,true
+container,Microsoft Backup Tape Archive,bkf,application/vnd.ms-backup,true,true,true,false,true,true,true
+container,Microsoft BitLocker Encrypted Volume,,filesystem/x-bitlocker,true,true,true,false,true,true,true
+container,Microsoft Cabinet Archive,cab,application/vnd.ms-cab-compressed,true,true,true,false,true,true,true
+container,Microsoft ClipArt Gallery,cag,application/vnd.ms-clipart-gallery,true,true,true,false,true,true,true
+container,Microsoft Entourage Folder,olk14folder,application/vnd.ms-entourage-folder,true,true,true,false,true,true,true
+container,Microsoft Entourage Mailbox,,application/vnd.ms-entourage,true,true,true,false,true,true,true
+container,Microsoft Entourage Orphaned Item,olk15msgattachment,application/vnd.ms-entourage-orphan,true,true,true,false,true,true,true
+container,Microsoft Exchange Server Property Store,edb,application/vnd.ms-exchange-edb,true,true,true,false,true,true,true
+container,Microsoft Exchange Server Streaming Store,stm,application/vnd.ms-exchange-stm,true,true,true,false,true,true,true
+container,Microsoft Imaging Format,wim,application/vnd.ms-wim,true,true,true,false,true,true,true
+container,Microsoft Installer File,msi,application/vnd.ms-installer,true,true,true,false,true,true,true
+container,Microsoft Installer Patch Package,msp,application/vnd.ms-installer-patch-package,true,true,true,false,true,true,true
+container,Microsoft Installer Transform File,mst,application/vnd.ms-installer-transform,true,true,true,false,true,true,true
+container,Microsoft Marshaled Server Object,,application/vnd.ms-mso,true,true,true,false,true,true,true
+container,Microsoft OLE 1.0 Native Wrapper,,application/vnd.ms-ole10native-wrapper,true,true,true,false,true,true,true
+container,Microsoft OLE2 Attachment Wrapper,,application/vnd.ms-ole2-attachment,true,true,true,false,true,true,true
+container,Microsoft OLE2 Clipboard Wrapper,,application/vnd.ms-ole2-clipboard,true,true,true,false,true,true,true
+container,Microsoft OLE2 Package File,,application/vnd.ms-ole2-package,true,true,true,false,true,true,true
+container,Microsoft OneDrive Account,,server/microsoft-onedrive-account,true,true,true,false,true,true,true
+container,Microsoft OneDrive Drive,,server/microsoft-onedrive-drive,true,true,true,false,true,true,true
+container,Microsoft OneDrive Folder,,server/microsoft-onedrive-folder,true,true,true,false,true,true,true
+container,Microsoft OneNote Table of Contents File,onetoc2,application/vnd.ms-onenote-toc,true,true,true,false,true,true,true
+container,Microsoft Outlook Express 4 Mailbox,mbx,application/vnd.ms-outlook-express-4,true,true,true,false,true,true,true
+container,Microsoft Outlook Express Mailbox,dbx,application/vnd.ms-outlook-express,true,true,true,false,true,true,true
+container,Microsoft Outlook Folder,,application/vnd.ms-outlook-folder,true,true,true,false,true,true,true
+container,Microsoft Outlook Mac Mailbox,olm,application/vnd.ms-outlook-mac,true,true,true,false,true,true,true
+container,Microsoft Outlook Message,msg,application/vnd.ms-outlook-msg,true,true,true,false,true,true,true
+container,Microsoft Outlook Personal Folder,pst,application/vnd.ms-outlook,true,true,true,false,true,true,true
+container,Microsoft Outlook Shortcut,msg,application/vnd.ms-outlook-shortcut,true,true,true,false,true,true,true
+container,Microsoft Photo Editor Object,,application/vnd.ms-photo-editor,true,true,true,false,true,true,true
+container,Microsoft Registry File,,application/vnd.ms-registry,true,true,true,false,true,true,true
+container,Microsoft Shell Scrap,shs,application/vnd.ms-shell-scrap,true,true,true,false,true,true,true
+container,Microsoft Transport Neutral Encapsulation Format File,dat,application/vnd.ms-tnef,true,true,true,false,true,true,true
+container,Microsoft Virtual PC / Server VHD Disk File,vhd,application/vnd.ms-virtual-harddisk,true,true,true,false,true,true,true
+container,Microsoft Virtual PC / Server VHDX Disk File,vhdx,application/vnd.ms-virtual-harddisk-x,true,true,true,false,true,true,true
+container,Mozilla/Firefox Browser Cache2 Entry,,application/vnd.mozilla-browser-cache2-entry,true,true,true,false,true,true,true
+container,NTFS Volume Shadow Store,,filesystem/x-ntfs-vss-store,true,true,true,false,true,true,true
+container,Norton Ghost Disk Image,gho,application/vnd.norton-ghost,true,true,true,false,true,true,true
+container,Nuix Evidence File,,application/vnd.nuix-evidence,true,true,true,false,true,true,true
+container,Nuix Load File,csv,application/vnd.nuix-load-file,true,true,true,false,true,true,true
+container,Nuix Logical Image File,nli,application/vnd.nuix-logical-image-file,true,true,true,false,true,true,true
+container,Nullsoft Scriptable Install System Archive,,application/vnd.nullsoft.nsis-archive,true,true,true,false,true,true,true
+container,Oxygen Export XML File,xml,application/vnd.oxygen-export-file,true,true,true,false,true,true,true
+container,Oxygen Export XML Skype Account,,application/vnd.oxygen-skype-account,true,true,true,false,true,true,true
+container,PGP/MIME Format,,application/pgp-encrypted,true,true,true,false,true,true,true
+container,POP Mail Account,,server/pop3,true,true,true,false,true,true,true
+container,POP Mail Folder,,server/pop3-folder,true,true,true,false,true,true,true
+container,Parallels VM Disk Image,hdd,application/vnd.parallels-virtual-harddisk,true,true,true,false,true,true,true
+container,Parchive (Parity Archive) 1.0 File,par,application/x-par,true,true,true,false,true,true,true
+container,Parchive (Parity Archive) 2.0 File,par,application/x-par2,true,true,true,false,true,true,true
+container,Portable Document Format Portfolio,pdf,application/pdf-portfolio,true,true,true,false,true,true,true
+container,RAR Archive File,rar,application/x-rar-compressed,true,true,true,false,true,true,true
+container,RFC822 log,,message/rfc822-log,true,true,true,false,true,true,true
+container,RPM Archive File,rpm,application/x-rpm,true,true,true,false,true,true,true
+container,Reuters Messenger File,txt,application/vnd.reuters-messenger,true,true,true,false,true,true,true
+container,SSH Account,,server/ssh-account,true,true,true,false,true,true,true
+container,SSH Directory,,server/ssh-directory,true,true,true,false,true,true,true
+container,Self-Extracting Archive,exe,application/x-self-extracting-archive,true,true,true,false,true,true,true
+container,SharePoint List,,server/sharepoint-list,true,true,true,false,true,true,true
+container,SharePoint Server,,server/sharepoint,true,true,true,false,true,true,true
+container,SharePoint Site,,server/sharepoint-site,true,true,true,false,true,true,true
+container,Sonic Global Image,gi,application/vnd.sonic-global-image,true,true,true,false,true,true,true
+container,StuffIt Archive File,sit,application/x-stuffit,true,true,true,false,true,true,true
+container,Symantec Vault DVS File,dvs,application/vnd.symantec-vault,true,true,true,false,true,true,true
+container,Symantec Vault Stream,dvssp,application/vnd.symantec-vault-stream-data,true,true,true,false,true,true,true
+container,Tencent Foxmail Box File,box,application/vnd.tencent-foxmail-box,true,true,true,false,true,true,true
+container,The Local Machine,,application/vnd.nuix-local-host,true,true,true,false,true,true,true
+container,UNIX Ar Archive File,ar,application/x-ar,true,true,true,false,true,true,true
+container,UNIX CPIO Archive File,cpio,application/x-cpio,true,true,true,false,true,true,true
+container,UNIX compress-Compressed File,z,application/x-compress,true,true,true,false,true,true,true
+container,Unallocated Space,,filesystem/unallocated-space,true,true,true,false,true,true,true
+container,Unallocated Space Chunk,,filesystem/unallocated-space-chunk,true,true,true,false,true,true,true
+container,Uuencoded Content,uue,application/x-uuencoded,true,true,true,false,true,true,true
+container,VMWare Disk Descriptor File,vmdk,application/vnd.vmware.vmdk-descriptor,true,true,true,false,true,true,true
+container,VMWare Sparse Disk Image Segment,vmdk,application/vnd.vmware.vmdk-sparse,true,true,true,false,true,true,true
+container,Valve GCF Archive File,gcf,application/vnd.valve-gcf,true,true,true,false,true,true,true
+container,Valve Pak Archive File,vpk,application/vnd.valve-pak,true,true,true,false,true,true,true
+container,Valve VBSP Map File,bsp,application/vnd.valve-vbsp,true,true,true,false,true,true,true
+container,Windows 7 Sticky Notes File,snt,application/vnd.ms-stickynote,true,true,true,false,true,true,true
+container,Windows Thumbs DB File,db,application/x-thumbs-db,true,true,true,false,true,true,true
+container,X-Ways File System Image,ctr,application/vnd.x-ways.filesystem,true,true,true,false,true,true,true
+container,XAR Archive File,,application/xar,true,true,true,false,true,true,true
+container,XZ Compressed File,xz,application/x-xz,true,true,true,false,true,true,true
+container,Xxencoded Content,xxe,application/x-xxencoded,true,true,true,false,true,true,true
+container,ZLIB Compressed File,,application/zlib,true,true,true,false,true,true,true
+container,ZLIB Compressed Stream,,application/x-zlib-stream,true,true,true,false,true,true,true
+container,ZOO Compressed File,zoo,application/x-zoo,true,true,true,false,true,true,true
+container,Zantaz EAS Archive,eas,application/vnd.zantaz.archive,true,true,true,false,true,true,true
+container,Zip-Compressed File,zip,application/x-zip-compressed,true,true,true,false,true,true,true
+container,bzip-Compressed File,bz2,application/x-bzip,true,true,true,false,true,true,true
+container,gzip-Compressed File,gz,application/x-gzip,true,true,true,false,true,true,true
+container,iCalendar File,ics,text/calendar,true,true,true,false,true,true,true
+container,tar Archive File,tar,application/x-tar,true,true,true,false,true,true,true
+container,vCalendar Data File,vcs,text/x-vcalendar,true,true,true,false,true,true,true
+container,vCard File,vcf,text/vcard,true,true,true,false,true,true,true
+container,vCard XML File,vcf,application/vcard+xml,true,true,true,false,true,true,true
+database,AOS Database,db,application/vnd.aos-database,true,true,true,false,true,true,true
+database,Adobe Photoshop Elements Thumbnail Database,cache,application/vnd.adobe-photoshop-elements-thumb-db,true,true,true,false,true,true,true
+database,Apple Safari Cache Database File,db,application/vnd.apple-safari-cache,true,true,true,false,true,true,true
+database,Apple Safari History,db,application/vnd.apple-safari-history,true,true,true,false,true,true,true
+database,Apple Wallet Pass file,pkpass,application/vnd.apple.pkpass,true,true,true,false,true,true,true
+database,Apple iOS Address Book Database,db,application/vnd.apple-ios-address-book-database,true,true,true,false,true,true,true
+database,Apple iOS Backup Database,db,application/vnd.apple-ios-backup-database,true,true,true,false,true,true,true
+database,Apple iOS Message Database,db,application/vnd.apple-ios-message-database,true,true,true,false,true,true,true
+database,Apple iOS Safari Bookmarks Database,db,application/vnd.apple-ios-bookmarks-database,true,true,true,false,true,true,true
+database,Apple iPhone Call Database,db,application/vnd.apple-iphone-call-database,true,true,true,false,true,true,true
+database,Apple iPhone Voice Mail Database,db,application/vnd.apple-iphone-voice-mail-database,true,true,true,false,true,true,true
+database,AutoCAD Slide Library File,slb,application/vnd.autocad-slb,true,true,true,false,true,true,true
+database,Borland Paradox Database,db,application/vnd.borland-paradox,true,true,true,false,true,true,true
+database,Borland dBase Database,dbf,application/vnd.borland-dbase,true,true,true,false,true,true,true
+database,Database,,application/x-database,true,true,true,false,true,true,true
+database,Database Table,,application/x-database-table,true,true,true,false,true,true,true
+database,Database Table Row,,application/x-database-table-row,true,true,true,false,true,true,true
+database,Database View,,application/x-database-view,true,true,true,false,true,true,true
+database,Google Android Contact / Call Database,db,application/vnd.google-android-contact-call-database,true,true,true,false,true,true,true
+database,Google Android SMS Database,db,application/vnd.google-android-sms-database,true,true,true,false,true,true,true
+database,Google Chrome History Database,,application/vnd.google-chrome-history,true,true,true,false,true,true,true
+database,Google Chrome History Index Database,,application/vnd.google-chrome-history-index,true,true,true,false,true,true,true
+database,Google Chrome Shortcuts Database,,application/vnd.google-chrome-shortcuts,true,true,true,false,true,true,true
+database,Google Drive Snapshot Database,,application/vnd.google-drive-snapshot-database,true,true,true,false,true,true,true
+database,MYOB Company File,myo,application/vnd.myob,true,true,true,false,true,true,true
+database,Media Impression RocketThumb Database,db,application/vnd.mediaimpression-rocketthumb-db,true,true,true,false,true,true,true
+database,Microsoft 2007 Access Database,accdb,application/vnd.ms-access-acedb,true,true,true,false,true,true,true
+database,Microsoft Access Database,mdb,application/vnd.ms-access,true,true,true,false,true,true,true
+database,Microsoft ESE Database,,application/vnd.ms-ese-database,true,true,true,false,true,true,true
+database,Microsoft ESE Row,,application/vnd.ms-ese-row,true,true,true,false,true,true,true
+database,Microsoft ESE Table,,application/vnd.ms-ese-table,true,true,true,false,true,true,true
+database,Microsoft Internet Explorer Cache,dat,application/vnd.ms-ie-cache,true,true,true,false,true,true,true
+database,Microsoft Money Document,mny,application/x-msmoney,true,true,true,false,true,true,true
+database,Microsoft Registry Journal File,,application/vnd.ms-registry-journal,true,true,true,false,true,true,true
+database,Microsoft SQL Server Instance,,server/sqlserver-instance,true,true,true,false,true,true,true
+database,Mozilla Mork Database,mab,application/vnd.mozilla.mdb-mork,true,true,true,false,true,true,true
+database,Mozilla/Firefox Browser Cache,,application/vnd.mozilla-browser-cache,true,true,true,false,true,true,true
+database,Mozilla/Firefox Cookies,,application/vnd.mozilla-firefox-cookies,true,true,true,false,true,true,true
+database,Mozilla/Firefox History,,application/vnd.mozilla-firefox-history,true,true,true,false,true,true,true
+database,Open Financial Exchange,ofx,application/x-ofx,true,true,true,false,true,true,true
+database,Pixel Index Thumbnail Database,db,application/vnd.pixelindex-thumb-db,true,true,true,false,true,true,true
+database,QuickBooks Document,qbw,application/vnd.intuit.qbw,true,true,true,false,true,true,true
+database,Quicken Document,qdf,application/vnd.intuit.qdf,true,true,true,false,true,true,true
+database,SQLite Database,db,application/vnd.sqlite-database,true,true,true,false,true,true,true
+database,Skype Activity Database,db,application/vnd.skype-activity-database,true,true,true,false,true,true,true
+database,WhatsApp Android Contacts database file,db,application/vnd.whatsapp-android-contact-database,true,true,true,false,true,true,true
+database,WhatsApp Android Messages database file,db,application/vnd.whatsapp-android-message-database,true,true,true,false,true,true,true
+database,WhatsApp iOS Contacts database file,sqlite,application/vnd.whatsapp-ios-contact-database,true,true,true,false,true,true,true
+database,WhatsApp iOS Messages database file,sqlite,application/vnd.whatsapp-ios-message-database,true,true,true,false,true,true,true
+document,Apple Pages Document File,pages,application/vnd.apple.pages,true,true,true,false,true,true,true
+document,Concordance Load File Item,,application/vnd.concordance-load-file-item,true,true,true,false,true,true,true
+document,DocBook Document,dbk,application/docbook+xml,true,true,true,false,true,true,true
+document,EPUB Document,epub,application/epub+zip,true,true,true,false,true,true,true
+document,Everlaw Load File Item,,application/vnd.everlaw-load-file-item,true,true,true,false,true,true,true
+document,Evernote Note,,application/vnd.evernote-note,true,true,true,false,true,true,true
+document,Extensible Hypertext Markup Language Document,html,application/xhtml+xml,true,true,true,false,true,true,true
+document,Google Drive Document,,application/vnd.google-drive-document,true,true,true,false,true,true,true
+document,Haansoft Hangul Word Processing File,hwp,application/x-hwp,true,true,true,false,true,true,true
+document,Hypertext Markup Language Document,html,text/html,true,true,true,false,true,true,true
+document,Ichitaro Word Processing File,jtd,application/x-js-taro,true,true,true,false,true,true,true
+document,InControl Load File Item,,application/vnd.incontrol-load-file-item,true,true,true,false,true,true,true
+document,Lotus WordPro Document,lwp,application/vnd.lotus-wordpro,true,true,true,false,true,true,true
+document,MIME/HTML Document,mht,application/x-mime-html,true,true,true,false,true,true,true
+document,Microsoft 2007 Word Document,docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,true,true,true,false,true,true,true
+document,Microsoft OLE2 Encrypted Package File,,application/vnd.ms-ole2-encrypted-package,true,true,true,false,true,true,true
+document,Microsoft OneNote File,one,application/vnd.ms-onenote,true,true,true,false,true,true,true
+document,Microsoft OneNote Page,,application/vnd.ms-onenote-page,true,true,true,false,true,true,true
+document,Microsoft Publisher File,pub,application/vnd.ms-publisher,true,true,true,false,true,true,true
+document,Microsoft Word Document,doc,application/vnd.ms-word,true,true,true,false,true,true,true
+document,Microsoft Word Pre-OLE2 Document,doc,application/vnd.ms-word-pre-ole2,true,true,true,false,true,true,true
+document,Microsoft Word XML Document,xml,application/vnd.ms-word+xml,true,true,true,false,true,true,true
+document,Microsoft Works Word Processor Document,wps,application/vnd.ms-works-wp,true,true,true,false,true,true,true
+document,Microsoft XPS Document,xps,application/vnd.ms-xpsdocument,true,true,true,false,true,true,true
+document,Mozilla/Firefox Session Store File,js,application/vnd.mozilla-firefox-session-store,true,true,true,false,true,true,true
+document,OpenDocument Text,odt,application/vnd.oasis.opendocument.text,true,true,true,false,true,true,true
+document,OpenXPS Document,oxps,application/oxps,true,true,true,false,true,true,true
+document,Portable Document Format,pdf,application/pdf,true,true,true,false,true,true,true
+document,Postscript File,ps,application/postscript,true,true,true,false,true,true,true
+document,Predictive Model Markup Language Document,pmml,application/x-pmml-xml,true,true,true,false,true,true,true
+document,Quicken Interchange File,qif,application/vnd.intuit.qif,true,true,true,false,true,true,true
+document,Rich Text Format,rtf,text/rtf,true,true,true,false,true,true,true
+document,Samsung JungUm Global Document,gul,application/vnd.samsung-gul,true,true,true,false,true,true,true
+document,Sanshiro Spreadsheet File,jsd,application/x-js-sns,true,true,true,false,true,true,true
+document,StarWriter Document,sdw,application/vnd.stardivision.writer,true,true,true,false,true,true,true
+document,StarWriter XML Document,sxw,application/vnd.sun.xml.writer,true,true,true,false,true,true,true
+document,Uniform Office Text File,uot,application/vnd.uof.text,true,true,true,false,true,true,true
+document,WordPerfect Document,wpd,application/vnd.corel-wordperfect,true,true,true,false,true,true,true
+drawing,Adobe Illustrator Artwork,ai,application/vnd.adobe-illustrator,true,true,true,false,true,true,true
+drawing,AutoCAD DWF Drawing,dwf,image/vnd.autocad-dwf,true,true,true,false,true,true,true
+drawing,AutoCAD DWFx Drawing,dwfx,image/vnd.autocad-dwfx,true,true,true,false,true,true,true
+drawing,AutoCAD DWG Drawing,dwg,image/vnd.autocad-dwg,true,true,true,false,true,true,true
+drawing,AutoCAD DXF Drawing,dxf,image/vnd.autocad-dxf,true,true,true,false,true,true,true
+drawing,AutoCAD Shape,shx,image/vnd.autocad-shp,true,true,true,false,true,true,true
+drawing,AutoCAD Slide,sld,image/x-sld,true,true,true,false,true,true,true
+drawing,CAXA CAD Drawing,exb,image/vnd.caxa-cad,true,true,true,false,true,true,true
+drawing,Computer Graphics Metafile,cgm,image/cgm,true,true,true,false,true,true,true
+drawing,Corel Draw 6.0 Graphic,cdr6,image/vnd.corel-draw-6,true,true,true,false,true,true,true
+drawing,Corel Draw Drawing,cdr,image/vnd.corel-draw,true,true,true,false,true,true,true
+drawing,GEM Draw Image,gem,image/x-gem-draw,true,true,true,false,true,true,true
+drawing,Google Drive Drawing,,application/vnd.google-drive-drawing,true,true,true,false,true,true,true
+drawing,Graphic Database System II Layout File,gdsii,image/x-graphic-database-system-ii,true,true,true,false,true,true,true
+drawing,HumanConcepts OrgPlus Document,opx,application/vnd.humanconcepts-orgplus,true,true,true,false,true,true,true
+drawing,Micrografx Designer Drawing,drw,image/vnd.micrografx-designer,true,true,true,false,true,true,true
+drawing,Microsoft 2007 Chart,xml,application/vnd.openxmlformats-officedocument.drawingml.chart+xml,true,true,true,false,true,true,true
+drawing,Microsoft 2007 Excel VML Drawing,vml,application/vnd.openxmlformats-officedocument.vmlDrawing,true,true,true,false,true,true,true
+drawing,Microsoft Excel Chart,xlc,application/vnd.ms-excel-chart,true,true,true,false,true,true,true
+drawing,Microsoft Graph Chart,gra,application/vnd.ms-graph,true,true,true,false,true,true,true
+drawing,Microsoft OrgChart OLE Object,,application/vnd.ms-orgchart,true,true,true,false,true,true,true
+drawing,Microsoft Visio Drawing,vsd,application/vnd.ms-visio,true,true,true,false,true,true,true
+drawing,Microsoft Visio OPC/XML Drawing,vsdx,application/vnd.ms-visio+opc-xml,true,true,true,false,true,true,true
+drawing,Microsoft Visio XML Drawing,vdx,application/vnd.ms-visio+xml,true,true,true,false,true,true,true
+drawing,Microsoft Windows Enhanced Metafile,emf,image/vnd.ms-emf,true,true,true,false,true,true,true
+drawing,Microsoft Windows Metafile,wmf,image/vnd.ms-wmf,true,true,true,false,true,true,true
+drawing,Microsoft Word Art,,application/vnd.ms-word-art,true,true,true,false,true,true,true
+drawing,Microsoft Word Picture,doc,application/vnd.ms-word-picture,true,true,true,false,true,true,true
+drawing,OpenDocument Chart,odc,application/vnd.oasis.opendocument.chart,true,true,true,false,true,true,true
+drawing,OpenDocument Database,odb,application/vnd.oasis.opendocument.database,true,true,true,false,true,true,true
+drawing,OpenDocument Graphics,odg,application/vnd.oasis.opendocument.graphics,true,true,true,false,true,true,true
+drawing,Scalable Vector Graphic,svg,image/svg+xml,true,true,true,false,true,true,true
+drawing,StarDraw Drawing,sda,application/vnd.stardivision.draw,true,true,true,false,true,true,true
+drawing,StarDraw XML Drawing,sxd,application/vnd.sun.xml.draw,true,true,true,false,true,true,true
+email,Becky! Email Message,,application/vnd.rimarts-becky-email,true,true,true,false,true,true,true
+email,Blackberry Email,,application/vnd.rim-blackberry-email,true,true,true,false,true,true,true
+email,Blackberry SMS,,application/vnd.rim-blackberry-sms,true,true,true,false,true,true,true
+email,HP TRIM Email,vmbx,application/vnd.hp-trim-email,true,true,true,false,true,true,true
+email,Lotus Domino XML Mail,xml,application/vnd.lotus-domino-xml-mail-document,true,true,true,false,true,true,true
+email,Lotus Notes Document,dxl,application/vnd.lotus-notes-document,true,true,true,false,true,true,true
+email,Microsoft Entourage Message,olk14message,application/vnd.ms-entourage-message,true,true,true,false,true,true,true
+email,Microsoft Outlook Item,msg,application/vnd.ms-outlook-item,true,true,true,false,true,true,true
+email,Microsoft Outlook Mac Email,xml,application/vnd.ms-outlook-mac-email,true,true,true,false,true,true,true
+email,Microsoft Outlook Note,msg,application/vnd.ms-outlook-note,true,true,true,false,true,true,true
+email,Microsoft Restricted Permission Message,rpmsg,application/x-microsoft-restricted-permission-message,true,true,true,false,true,true,true
+email,PCM Email,pcm,application/pcm-email,true,true,true,false,true,true,true
+email,Portable Document Format Mail,pdf,application/pdf-mail,true,true,true,false,true,true,true
+email,RFC822 Email Headers,eml,message/rfc822-headers,true,true,true,false,true,true,true
+email,RFC822 Email Message,eml,message/rfc822,true,true,true,false,true,true,true
+email,Scraped Message,eml,message/x-scraped,true,true,true,false,true,true,true
+image,AOL Art Image,art,image/vnd.aol-art,true,true,true,false,true,true,true
+image,Adobe Photoshop Image,psd,application/vnd.adobe-photoshop,true,true,true,false,true,true,true
+image,Compuserve Graphic Interchange Format,gif,image/gif,true,true,true,false,true,true,true
+image,Corel Photo-Paint Image,cpt,image/vnd.corel-photo-paint,true,true,true,false,true,true,true
+image,Corel WordPerfect Graphics,wpg,image/vnd.corel-wordperfect-graphics,true,true,true,false,true,true,true
+image,Direct Draw Surface Image,dds,image/vnd.ms-dds,true,true,true,false,true,true,true
+image,DjVu Image,djvu,image/vnd.djvu,true,true,true,false,true,true,true
+image,Efax Image,efx,image/vnd.j2global-efax,true,true,true,false,true,true,true
+image,GIMP XCF Image,xcf,image/xcf,true,true,true,false,true,true,true
+image,JPEG 2000 Image,jp2,image/jp2,true,true,true,false,true,true,true
+image,JPEG/JFIF Image,jpeg,image/jpeg,true,true,true,false,true,true,true
+image,Lotus Freelance Graphics,drw,image/vnd.lotus-freelance,true,true,true,false,true,true,true
+image,Lotus Notes Bitmap Image,,image/vnd.lotus-notes-bitmap,true,true,true,false,true,true,true
+image,Macintosh QuickDraw Picture,pict,image/x-pict,true,true,true,false,true,true,true
+image,Microsoft Draw OLE Object,,application/vnd.ms-draw,true,true,true,false,true,true,true
+image,Microsoft Drawing OLE Object,,application/vnd.ms-drawing,true,true,true,false,true,true,true
+image,Microsoft HD Photo Image,wdp,image/vnd.ms-photo,true,true,true,false,true,true,true
+image,Microsoft Office Document Imaging,mdi,image/vnd.microsoft-modi,true,true,true,false,true,true,true
+image,Microsoft Windows Cursor Image,cur,image/vnd.ms-windows-cursor,true,true,true,false,true,true,true
+image,OpenDocument Image,odi,application/vnd.oasis.opendocument.image,true,true,true,false,true,true,true
+image,PCX Image,pcx,image/pcx,true,true,true,false,true,true,true
+image,Portable Network Graphic,png,image/png,true,true,true,false,true,true,true
+image,Tagged Image Format File,tiff,image/tiff,true,true,true,false,true,true,true
+image,Targa Image File,tga,image/tga,true,true,true,false,true,true,true
+image,UNIX Portable Bitmap Graphic,pbm,image/x-portable-bitmap,true,true,true,false,true,true,true
+image,UNIX Portable Graymap Graphic,pgm,image/x-portable-graymap,true,true,true,false,true,true,true
+image,UNIX Portable Pixelmap Graphic,ppm,image/x-portable-pixmap,true,true,true,false,true,true,true
+image,WebP Image,webp,image/webp,true,true,true,false,true,true,true
+image,Windows Bitmap Graphic,bmp,image/bmp,true,true,true,false,true,true,true
+image,Wireless Bitmap Graphic,wbmp,image/vnd.wap.wbmp,true,true,true,false,true,true,true
+image,macOS Icon File,icns,image/vnd.apple.icns,true,true,true,false,true,true,true
+log,Apache Error Log,log,application/vnd.apache-error-log,true,true,true,false,true,true,true
+log,Apache Error Log Entry,,application/vnd.apache-error-log-entry,true,true,true,false,true,true,true
+log,Classic Packet Capture File,pcap,application/vnd.tcpdump.pcap,true,true,true,false,true,true,true
+log,Common Log Format File,log,text/x-common-log,true,true,true,false,true,true,true
+log,Common Log Format File Entry,,text/x-common-log-entry,true,true,true,false,true,true,true
+log,Dropbox Log,,server/dropbox-log,true,true,true,false,true,true,true
+log,Dropbox Log Event,,server/dropbox-log-event,true,true,true,false,true,true,true
+log,Git Logstash Log Entry,log,application/vnd.git-logstash-log,true,true,true,false,true,true,true
+log,Git Logstash Log File Entry,,application/vnd.git-logstash-log-entry,true,true,true,false,true,true,true
+log,Linux Last Login Record,,filesystem/x-linux-login-logfile-record,true,true,true,false,true,true,true
+log,Linux Syslog File,log,application/vnd.linux-syslog,true,true,true,false,true,true,true
+log,Linux Syslog File Entry,,application/vnd.linux-syslog-entry,true,true,true,false,true,true,true
+log,Log File Entry,,text/x-log-entry,true,true,true,false,true,true,true
+log,Logstash Log File,log,application/vnd.logstash-log,true,true,true,false,true,true,true
+log,Logstash Log File Entry,,application/vnd.logstash-log-entry,true,true,true,false,true,true,true
+log,Microsoft Internet Information Services Log File,log,application/vnd.ms-iis-log,true,true,true,false,true,true,true
+log,Microsoft Internet Information Services Log File Entry,,application/vnd.ms-iis-log-entry,true,true,true,false,true,true,true
+log,Microsoft Windows Event Log (pre-Vista),evt,application/vnd.ms-windows-event-log,true,true,true,false,true,true,true
+log,Microsoft Windows Event Log Record (pre-Vista),,application/vnd.ms-windows-event-log-record,true,true,true,false,true,true,true
+log,Microsoft Windows Vista and Windows 8 Event Log,evtx,application/vnd.ms-windows-event-logx,true,true,true,false,true,true,true
+log,Microsoft Windows Vista and Windows 8 Event Log Chunk,,application/vnd.ms-windows-event-logx-chunk,true,true,true,false,true,true,true
+log,Microsoft Windows Vista and Windows 8 Event Log Record,,application/vnd.ms-windows-event-logx-record,true,true,true,false,true,true,true
+log,Network Packet,,application/vnd.tcpdump.record,true,true,true,false,true,true,true
+log,New Generation Packet Capture File,pcapng,application/x-pcapng,true,true,true,false,true,true,true
+log,New Generation Packet Capture File Entry,,application/x-pcapng-entry,true,true,true,false,true,true,true
+log,Nuix Log File,log,text/x-nuix-log,true,true,true,false,true,true,true
+log,Setup API Windows 7 and 8 Boot Entry,log,application/vnd.ms-windows-setup-api-win7-win8-log-boot-entry,true,true,true,false,true,true,true
+log,Setup API Windows 7 and 8 Section Entry,log,application/vnd.ms-windows-setup-api-win7-win8-log-section-entry,true,true,true,false,true,true,true
+log,Setup API Windows XP Section Entry,,application/vnd.ms-windows-setup-api-xp-log-entry,true,true,true,false,true,true,true
+log,Squid Proxy Access Log,log,application/vnd.squid-access-log,true,true,true,false,true,true,true
+log,Squid Proxy Access Log Entry,,application/vnd.squid-access-log-entry,true,true,true,false,true,true,true
+log,Structured Text File,,text/x-structured-text,true,true,true,false,true,true,true
+log,TCP Stream,,application/vnd.tcpdump.tcp.stream,true,true,true,false,true,true,true
+log,Twitter Logstash Log Entry,log,application/vnd.twitter-logstash-log,true,true,true,false,true,true,true
+log,Twitter Logstash Log File Entry,,application/vnd.twitter-logstash-log-entry,true,true,true,false,true,true,true
+log,UDP Stream,,application/vnd.tcpdump.udp.stream,true,true,true,false,true,true,true
+multimedia,AMV Video File,amv,video/x-amv,true,true,true,false,true,true,true
+multimedia,AVI Multimedia File,avi,video/avi,true,true,true,false,true,true,true
+multimedia,Adaptive Multi-Rate Audio File,amr,audio/amr,true,true,true,false,true,true,true
+multimedia,Adaptive Multi-Rate Wide Band Audio File,amr,audio/amr-wb,true,true,true,false,true,true,true
+multimedia,Adobe Flash Video File,flv,video/x-flv,true,true,true,false,true,true,true
+multimedia,Adobe Shockwave/Flash File,swf,application/x-shockwave-flash,true,true,true,false,true,true,true
+multimedia,Apple CAFF Audio File,caf,audio/x-caf,true,true,true,false,true,true,true
+multimedia,Apple QuickTime Multimedia File,mov,video/quicktime,true,true,true,false,true,true,true
+multimedia,Audio Interchange File,aiff,audio/aiff,true,true,true,false,true,true,true
+multimedia,Autodesk FLI Video File,fli,video/x-fli,true,true,true,false,true,true,true
+multimedia,Autodesk Scaleform USM Video File,usm,video/vnd.autodesk-scaleform-usm,true,true,true,false,true,true,true
+multimedia,Extensible Music Format Audio File,xmf,audio/xmf,true,true,true,false,true,true,true
+multimedia,FLAC Audio File,flac,audio/x-flac,true,true,true,false,true,true,true
+multimedia,FMOD Sample Bank Format,fsb,audio/vnd.fmod-sample,true,true,true,false,true,true,true
+multimedia,Infinity Engine Music File,acm,audio/vnd.infinity-engine-music,true,true,true,false,true,true,true
+multimedia,MIDI Audio File,mid,audio/midi,true,true,true,false,true,true,true
+multimedia,MPEG Audio File,mp3,audio/mpeg,true,true,true,false,true,true,true
+multimedia,MPEG Video File,mpg,video/mpeg,true,true,true,false,true,true,true
+multimedia,MPEG-4 Video File,mp4,application/mp4,true,true,true,false,true,true,true
+multimedia,Matroska Audio File,mka,audio/x-matroska,true,true,true,false,true,true,true
+multimedia,Matroska Video File,mkv,video/x-matroska,true,true,true,false,true,true,true
+multimedia,Microsoft Advanced Systems Format (ASF) Multimedia File,wmv,video/vnd.ms-asf,true,true,true,false,true,true,true
+multimedia,Microsoft Media Clip OLE Object,,application/vnd.ms-media-clip,true,true,true,false,true,true,true
+multimedia,Microsoft XWMA Audio File,xwma,audio/x-ms-wma,true,true,true,false,true,true,true
+multimedia,Nullsoft Multimedia Container,nsv,application/x-nsv-vp3-mp3,true,true,true,false,true,true,true
+multimedia,Nut Multimedia Container,nut,application/x-nut,true,true,true,false,true,true,true
+multimedia,Ogg Multimedia Container,ogg,application/ogg,true,true,true,false,true,true,true
+multimedia,QCP Audio File,qcp,audio/qcelp,true,true,true,false,true,true,true
+multimedia,RAD Game Tools Bink Video File,bik,video/vnd.rad-bink,true,true,true,false,true,true,true
+multimedia,RIFF WAVE Audio File,wav,audio/wav,true,true,true,false,true,true,true
+multimedia,Real Media Audio File,ra,audio/vnd.rn-realaudio,true,true,true,false,true,true,true
+multimedia,Sun Basic Audio File,au,audio/basic,true,true,true,false,true,true,true
+multimedia,TwinVQ Audio File,vqf,audio/x-twinvq,true,true,true,false,true,true,true
+multimedia,VGM Audio File,vgm,audio/x-vgm,true,true,true,false,true,true,true
+multimedia,Vivo Video File,viv,video/vnd.vivo,true,true,true,false,true,true,true
+multimedia,WavPack Audio File,wv,audio/x-wavpack,true,true,true,false,true,true,true
+multimedia,WebM Video File,webm,video/webm,true,true,true,false,true,true,true
+no-data,Empty File,,application/x-empty,true,true,true,false,true,true,true
+no-data,Inaccessible Content,,filesystem/inaccessible,true,true,true,false,true,true,true
+other-document,AOS SMS Message,,application/vnd.aos-sms-message,true,true,true,false,true,true,true
+other-document,AOS SMS Message Thread,,application/vnd.aos-sms-message-thread,true,true,true,false,true,true,true
+other-document,Adobe Format Data File,fdf,application/vnd.fdf,true,true,true,false,true,true,true
+other-document,Apple Safari Bookmarks Property List,plist,application/vnd.apple-safari-bookmarks-plist,true,true,true,false,true,true,true
+other-document,Apple Safari Cache Database Entry,,application/vnd.apple-safari-cache-entry,true,true,true,false,true,true,true
+other-document,Apple Safari Download Property List,,application/vnd.apple-safari-download-plist,true,true,true,false,true,true,true
+other-document,Apple Safari Download Property List Node,,application/vnd.apple-safari-download-plist-node,true,true,true,false,true,true,true
+other-document,Apple Safari History Entry,,application/vnd.apple-safari-history-entry,true,true,true,false,true,true,true
+other-document,Apple iCloud Account Device,,server/apple-icloud-account-device,true,true,true,false,true,true,true
+other-document,Apple iOS Message,,application/vnd.apple-ios-message,true,true,true,false,true,true,true
+other-document,Apple iOS Message Conversation,,application/vnd.apple-ios-message-conversation,true,true,true,false,true,true,true
+other-document,Apple iWork Archive File,iwa,application/vnd.apple.iwork-archive,true,true,true,false,true,true,true
+other-document,Bitcoin Wallet File,wallet,application/x-bitcoin-wallet,true,true,true,false,true,true,true
+other-document,Blender 3D Blend File,blend,application/vnd.blender.blend,true,true,true,false,true,true,true
+other-document,Bloomberg IM Message,,application/vnd.bloomberg-im-message,true,true,true,false,true,true,true
+other-document,Browser Bookmark,,application/x-browser-bookmark,true,true,true,false,true,true,true
+other-document,Browser Cookie,,application/x-browser-cookie,true,true,true,false,true,true,true
+other-document,Browser History Entry,,application/x-browser-history-entry,true,true,true,false,true,true,true
+other-document,Browser Search,,application/x-browser-search,true,true,true,false,true,true,true
+other-document,Call Record,,application/x-call-record,true,true,true,false,true,true,true
+other-document,Chat Conversation,,application/x-chat-conversation,true,true,true,false,true,true,true
+other-document,Chat Message,,application/x-chat-message,true,true,true,false,true,true,true
+other-document,Civilization 5 Save Game File,civ5save,application/vnd.firaxis-games-civ5-save,true,true,true,false,true,true,true
+other-document,EDRM XML Load File Item,,application/vnd.edrm-xml-load-file-item,true,true,true,false,true,true,true
+other-document,Exchange Web Services Item,,server/exchange-ews-item,true,true,true,false,true,true,true
+other-document,Exchange Web Services Task,,server/exchange-ews-task,true,true,true,false,true,true,true
+other-document,Facebook Dump Ads,,application/vnd.facebook-dump-ads,true,true,true,false,true,true,true
+other-document,Facebook Dump Contact Info,,application/vnd.facebook-dump-contact-info,true,true,true,false,true,true,true
+other-document,Facebook Dump Event,,application/vnd.facebook-dump-event,true,true,true,false,true,true,true
+other-document,Facebook Dump Friend,,application/vnd.facebook-dump-friend,true,true,true,false,true,true,true
+other-document,Facebook Dump Message,,application/vnd.facebook-dump-message,true,true,true,false,true,true,true
+other-document,Facebook Dump Place,,application/vnd.facebook-dump-place,true,true,true,false,true,true,true
+other-document,Facebook Dump Poke,,application/vnd.facebook-dump-poke,true,true,true,false,true,true,true
+other-document,Facebook Dump Profile,,application/vnd.facebook-dump-profile,true,true,true,false,true,true,true
+other-document,Facebook Dump Security,,application/vnd.facebook-dump-security,true,true,true,false,true,true,true
+other-document,Facebook Dump Setting,,application/vnd.facebook-dump-settings,true,true,true,false,true,true,true
+other-document,Facebook Dump Thread,,application/vnd.facebook-dump-thread,true,true,true,false,true,true,true
+other-document,Facebook Dump Timeline,,application/vnd.facebook-dump-timeline,true,true,true,false,true,true,true
+other-document,FictionBook eBook,fb2,application/x-fictionbook+xml,true,true,true,false,true,true,true
+other-document,GPX Document,,application/gpx+xml,true,true,true,false,true,true,true
+other-document,GPX Point,,application/gpx+xml.point,true,true,true,false,true,true,true
+other-document,Google Android SMS Message,,application/vnd.google-android-sms-message,true,true,true,false,true,true,true
+other-document,Google Android SMS Thread,,application/vnd.google-android-sms-thread,true,true,true,false,true,true,true
+other-document,Google Chrome Download Entry,,application/vnd.google-chrome-download-entry,true,true,true,false,true,true,true
+other-document,Google Chrome History Entry,,application/vnd.google-chrome-history-entry,true,true,true,false,true,true,true
+other-document,Google Chrome History Index Entry,,application/vnd.google-chrome-history-index-entry,true,true,true,false,true,true,true
+other-document,Google Chrome Shortcuts Entry,,application/vnd.google-chrome-shortcuts-entry,true,true,true,false,true,true,true
+other-document,Google Docs Form,,application/vnd.google-apps.form,true,true,true,false,true,true,true
+other-document,Google Docs Script,,application/vnd.google-apps.script,true,true,true,false,true,true,true
+other-document,Google Drive Snapshot Database Entry,,application/vnd.google-drive-snapshot-database-entry,true,true,true,false,true,true,true
+other-document,Google Earth KML Feature,,application/vnd.google-earth.kml-feature,true,true,true,false,true,true,true
+other-document,Google Earth KML File,,application/vnd.google-earth.kml+xml,true,true,true,false,true,true,true
+other-document,Google Earth KML Placemark,,application/vnd.google-earth.kml-placemark,true,true,true,false,true,true,true
+other-document,Google Maps Document,,application/vnd.google-apps.map,true,true,true,false,true,true,true
+other-document,Informed Form Data Document,ifm,application/vnd.shana.informed.formdata,true,true,true,false,true,true,true
+other-document,Informed Form Template Document,itp,application/vnd.shana.informed.formtemplate,true,true,true,false,true,true,true
+other-document,Ini Style Configuration File,ini,text/x-ini,true,true,true,false,true,true,true
+other-document,Installed Application,,application/x-application,true,true,true,false,true,true,true
+other-document,JSON Data File,json,application/json,true,true,true,false,true,true,true
+other-document,Java Keystore File,jks,application/x-java-keystore,true,true,true,false,true,true,true
+other-document,Location Record,,application/x-location,true,true,true,false,true,true,true
+other-document,Lotus Domino XML Other Document,xml,application/vnd.lotus-domino-xml-other-document,true,true,true,false,true,true,true
+other-document,Lotus Domino XML Task Document,xml,application/vnd.lotus-domino-xml-task-document,true,true,true,false,true,true,true
+other-document,Micro Systemation XRY Info Record,,application/vnd.msab-xry-info-record,true,true,true,false,true,true,true
+other-document,Microsoft Access Snapshot,snp,application/vnd.ms-access-snapshot,true,true,true,false,true,true,true
+other-document,Microsoft Entourage Category,olk15category,application/vnd.ms-entourage-category,true,true,true,false,true,true,true
+other-document,Microsoft Entourage Main,olk15main,application/vnd.ms-entourage-main,true,true,true,false,true,true,true
+other-document,Microsoft Entourage Note,olk14note,application/vnd.ms-entourage-note,true,true,true,false,true,true,true
+other-document,Microsoft Entourage Search,olk15search,application/vnd.ms-entourage-search,true,true,true,false,true,true,true
+other-document,Microsoft Entourage Signature,olk15signature,application/vnd.ms-entourage-signature,true,true,true,false,true,true,true
+other-document,Microsoft Entourage Task,olk14task,application/vnd.ms-entourage-task,true,true,true,false,true,true,true
+other-document,Microsoft Equation Object,,application/vnd.ms-equation,true,true,true,false,true,true,true
+other-document,Microsoft Internet Explorer Cache Entry,,application/vnd.ms-ie-cache-entry,true,true,true,false,true,true,true
+other-document,Microsoft Journal / Journal Template File,jnt,application/vnd.ms-journal,true,true,true,false,true,true,true
+other-document,Microsoft Note-It OLE Object,,application/vnd.ms-note-it,true,true,true,false,true,true,true
+other-document,Microsoft Office Downrev Storage,,application/vnd.ms-office.drsdownrev+xml,true,true,true,false,true,true,true
+other-document,Microsoft Office Graph Frame Doc,,application/vnd.ms-office.drse2odoc+xml,true,true,true,false,true,true,true
+other-document,Microsoft Office VBA File,,application/vnd.ms-office-vba,true,true,true,false,true,true,true
+other-document,Microsoft Outlook Activity,msg,application/vnd.ms-outlook-activity,true,true,true,false,true,true,true
+other-document,Microsoft Outlook Journal,msg,application/vnd.ms-outlook-journal,true,true,true,false,true,true,true
+other-document,Microsoft Outlook Mac Note,,application/vnd.ms-outlook-mac-note,true,true,true,false,true,true,true
+other-document,Microsoft Outlook Mac Task,,application/vnd.ms-outlook-mac-task,true,true,true,false,true,true,true
+other-document,Microsoft Outlook Sticky Note,msg,application/vnd.ms-outlook-stickynote,true,true,true,false,true,true,true
+other-document,Microsoft Outlook Task,msg,application/vnd.ms-outlook-task,true,true,true,false,true,true,true
+other-document,Microsoft Project File,mpp,application/vnd.ms-project,true,true,true,false,true,true,true
+other-document,Microsoft Reader eBook,lit,application/vnd.ms-reader,true,true,true,false,true,true,true
+other-document,Microsoft XNA Compiled Content,xnb,application/vnd.ms-xna-content,true,true,true,false,true,true,true
+other-document,MobiPocket eBook,mobi,application/x-mobipocket-ebook,true,true,true,false,true,true,true
+other-document,Mozilla/Firefox Browser Cache Entry,,application/vnd.mozilla-browser-cache-entry,true,true,true,false,true,true,true
+other-document,Mozilla/Firefox Download Entry,,application/vnd.mozilla-firefox-download-entry,true,true,true,false,true,true,true
+other-document,Mozilla/Firefox History Entry,,application/vnd.mozilla-firefox-history-entry,true,true,true,false,true,true,true
+other-document,Mozilla/Firefox Session Store Entry,,application/vnd.mozilla-firefox-session-store-entry,true,true,true,false,true,true,true
+other-document,Network Record,,application/x-network,true,true,true,false,true,true,true
+other-document,Note,,application/x-note,true,true,true,false,true,true,true
+other-document,Nuix Logical Image Info Record,,application/vnd.nuix-logical-image-info-record,true,true,true,false,true,true,true
+other-document,OpenDocument Formula,odf,application/vnd.oasis.opendocument.formula,true,true,true,false,true,true,true
+other-document,Oxygen Export XML SMS Message,,application/vnd.oxygen-sms-message,true,true,true,false,true,true,true
+other-document,Oxygen Export XML Skype SMS Message,,application/vnd.oxygen-skype-sms-message,true,true,true,false,true,true,true
+other-document,Oxygen Export XML Skype SMS Thread,,application/vnd.oxygen-skype-sms-thread,true,true,true,false,true,true,true
+other-document,PGP/MIME Keyring File,pgp,application/pgp-keys,true,true,true,false,true,true,true
+other-document,PKCS #12 File,p12,application/x-pkcs12,true,true,true,false,true,true,true
+other-document,PKCS #7 Certificates,p7b,application/x-pkcs7-certificates,true,true,true,false,true,true,true
+other-document,PKCS #7 MIME Encrypted,,application/pkcs7-mime,true,true,true,false,true,true,true
+other-document,PKCS #7 Signature,p7s,application/pkcs7-signature,true,true,true,false,true,true,true
+other-document,PKCS #7 Signed Data,p7s,application/pkcs7-signed-data,true,true,true,false,true,true,true
+other-document,Palm Database File,pdb,application/vnd.palm,true,true,true,false,true,true,true
+other-document,RDF/XML Metadata File,rdf,application/rdf+xml,true,true,true,false,true,true,true
+other-document,Reuters Messenger Conversation,,application/vnd.reuters-conversation,true,true,true,false,true,true,true
+other-document,SharePoint Item,,server/sharepoint-item,true,true,true,false,true,true,true
+other-document,Skype Chat Conversation,,application/vnd.skype-chat-conversation,true,true,true,false,true,true,true
+other-document,Skype Chat Logs File,dbb,application/vnd.skype-chat-log,true,true,true,false,true,true,true
+other-document,Skype Chat Message,,application/vnd.skype-chat-message,true,true,true,false,true,true,true
+other-document,Skype Chat Sync File,dat,application/vnd.skype-chat-sync,true,true,true,false,true,true,true
+other-document,Skype Voice or Video Call,,application/vnd.skype-call,true,true,true,false,true,true,true
+other-document,Sony BBeb eBook,lrf,application/x-sony-bbeb,true,true,true,false,true,true,true
+other-document,StarMath Formula,smf,application/vnd.stardivision.math,true,true,true,false,true,true,true
+other-document,StarOMath XML Formula,sxm,application/vnd.sun.xml.math,true,true,true,false,true,true,true
+other-document,System Memory,,system/x-memory,true,true,true,false,true,true,true
+other-document,System Memory Range,,system/x-memory-range,true,true,true,false,true,true,true
+other-document,System Memory Space,,system/x-memory-space,true,true,true,false,true,true,true
+other-document,System Process,,system/x-process,true,true,true,false,true,true,true
+other-document,Tomtom watch files,ttbin,application/vnd.tomtom.ttbin,true,true,true,false,true,true,true
+other-document,User Account Record,,application/x-user-account,true,true,true,false,true,true,true
+other-document,User Status Update,,application/x-user-status-update,true,true,true,false,true,true,true
+other-document,Voice Mail Record,,application/x-voice-mail-record,true,true,true,false,true,true,true
+other-document,WhatsApp Android Chat,,application/vnd.whatsapp-android-chat,true,true,true,false,true,true,true
+other-document,WhatsApp Android Contact,,application/vnd.whatsapp-android-contact,true,true,true,false,true,true,true
+other-document,WhatsApp Android Contact Capability,,application/vnd.whatsapp-android-contact-capability,true,true,true,false,true,true,true
+other-document,WhatsApp Android Message,,application/vnd.whatsapp-android-message,true,true,true,false,true,true,true
+other-document,WhatsApp iOS Chat,,application/vnd.whatsapp-ios-chat,true,true,true,false,true,true,true
+other-document,WhatsApp iOS Contact,,application/vnd.whatsapp-ios-contact,true,true,true,false,true,true,true
+other-document,WhatsApp iOS Message,,application/vnd.whatsapp-ios-message,true,true,true,false,true,true,true
+other-document,Windows RegEdit File,reg,text/x-windows-registry,true,true,true,false,true,true,true
+other-document,XSL Formatting Objects File,fo,application/xslfo+xml,true,true,true,false,true,true,true
+presentation,Apple Keynote Presentation File,key,application/vnd.apple.keynote,true,true,true,false,true,true,true
+presentation,Corel Presentation,mst,application/vnd.corel-presentations,true,true,true,false,true,true,true
+presentation,Google Drive Presentation,,application/vnd.google-drive-presentation,true,true,true,false,true,true,true
+presentation,Kingsoft Presentation Document,hpt,application/vnd.haansoft-presentation,true,true,true,false,true,true,true
+presentation,Lotus Freelance Presentation,prz,application/vnd.lotus-freelance,true,true,true,false,true,true,true
+presentation,Microsoft 2007 PowerPoint Presentation,pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation,true,true,true,false,true,true,true
+presentation,Microsoft PowerPoint Presentation,ppt,application/vnd.ms-powerpoint,true,true,true,false,true,true,true
+presentation,OpenDocument Presentation,odp,application/vnd.oasis.opendocument.presentation,true,true,true,false,true,true,true
+presentation,StarImpress Presentation,sdd,application/vnd.stardivision.impress,true,true,true,false,true,true,true
+presentation,StarImpress XML Presentation,sxi,application/vnd.sun.xml.impress,true,true,true,false,true,true,true
+presentation,Uniform Office Presentation File,uop,application/vnd.uof.presentation,true,true,true,false,true,true,true
+presentation,WordPerfect Slide Show,shw,application/vnd.corel-slideshow,true,true,true,false,true,true,true
+spreadsheet,Apple Numbers Spreadsheet File,numbers,application/vnd.apple.numbers,true,true,true,false,true,true,true
+spreadsheet,Comma Separated Values,csv,text/csv,true,true,true,false,true,true,true
+spreadsheet,Google Drive Spreadsheet,,application/vnd.google-drive-spreadsheet,true,true,true,false,true,true,true
+spreadsheet,Lotus 1-2-3 Spreadsheet File,wk1,application/vnd.lotus-123,true,true,true,false,true,true,true
+spreadsheet,Microsoft 2007 Excel Binary Spreadsheet,xlsb,application/vnd.openxmlformats-officedocument.spreadsheet.binary,true,true,true,false,true,true,true
+spreadsheet,Microsoft 2007 Excel Spreadsheet,xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,true,true,true,false,true,true,true
+spreadsheet,Microsoft Excel 95 Spreadsheet,xls,application/vnd.ms-excel-95,true,true,true,false,true,true,true
+spreadsheet,Microsoft Excel Pre-OLE2 Spreadsheet,xls,application/vnd.ms-excel-pre-ole2,true,true,true,false,true,true,true
+spreadsheet,Microsoft Excel Spreadsheet,xls,application/vnd.ms-excel,true,true,true,false,true,true,true
+spreadsheet,Microsoft Excel XML Spreadsheet,xml,application/vnd.ms-excel+xml,true,true,true,false,true,true,true
+spreadsheet,Microsoft Works Spreadsheet,wks,application/vnd.ms-works-ss,true,true,true,false,true,true,true
+spreadsheet,OpenDocument Spreadsheet,ods,application/vnd.oasis.opendocument.spreadsheet,true,true,true,false,true,true,true
+spreadsheet,Quattro Pro Spreadsheet,qpw,application/vnd.corel-quattro,true,true,true,false,true,true,true
+spreadsheet,StarCalc Spreadsheet,sdc,application/vnd.stardivision.calc,true,true,true,false,true,true,true
+spreadsheet,StarCalc XML Spreadsheet,sxc,application/vnd.sun.xml.calc,true,true,true,false,true,true,true
+spreadsheet,Tab Separated Values,tsv,text/tab-separated-values,true,true,true,false,true,true,true
+spreadsheet,Uniform Office Spreadsheet File,uos,application/vnd.uof.spreadsheet,true,true,true,false,true,true,true
+system,Apple Directory Services Store File,,application/vnd.apple-ds-store,true,true,true,false,true,true,true
+system,Apple Interface Builder Archive,nib,application/vnd.apple-interface-builder-archive,true,true,true,false,true,true,true
+system,Apple Safari History Property List,plist,application/vnd.apple-safari-history-plist,true,true,true,false,true,true,true
+system,Apple Safari History Property List Node,plist,application/vnd.apple-safari-history-plist-node,true,true,true,false,true,true,true
+system,Apple Typed Stream,,application/vnd.apple-typedstream,true,true,true,false,true,true,true
+system,AppleDouble Header File,,application/x-applefile-header,true,true,true,false,true,true,true
+system,BitTorrent File,torrent,application/x-bittorrent,true,true,true,false,true,true,true
+system,Block Device,,filesystem/block-device,true,true,true,false,true,true,true
+system,COFF Object File,obj,application/coff,true,true,true,false,true,true,true
+system,Character Device,,filesystem/character-device,true,true,true,false,true,true,true
+system,DOS Executable,com,application/com,true,true,true,false,true,true,true
+system,Dalvik Class,dex,application/dalvik-class,true,true,true,false,true,true,true
+system,Executable Script File,,application/x-executable-script,true,true,true,false,true,true,true
+system,FIFO,,filesystem/fifo,true,true,true,false,true,true,true
+system,Google Android Resource File,resource,application/vnd.google-android-resource,true,true,true,false,true,true,true
+system,INF Configuration File,inf,text/x-inf,true,true,true,false,true,true,true
+system,Java Class,class,application/java-class,true,true,true,false,true,true,true
+system,Java Serialised Object Data,,application/x-java-serialized-object,true,true,true,false,true,true,true
+system,LLVM Byte Code,bc,application/x-llvm-byte-code,true,true,true,false,true,true,true
+system,Linux Ecryptfs Entry,,application/vnd.linux-ecryptfs-entry,true,true,true,false,true,true,true
+system,Linux Last Login File,,filesystem/x-linux-login-logfile,true,true,true,false,true,true,true
+system,Linux Timezone Data,,application/vnd.linux-timezone,true,true,true,false,true,true,true
+system,Lua Byte Code,luc,application/x-lua-byte-code,true,true,true,false,true,true,true
+system,Mac Mach-O Executable,,application/x-mach-o,true,true,true,false,true,true,true
+system,Mac Mach-O Multi-Architecture Executable,,application/x-mach-o-multi,true,true,true,false,true,true,true
+system,Microsoft .NET Assembly,exe,application/x-dotnet,true,true,true,false,true,true,true
+system,Microsoft Automatic Jumplist,automaticdestinations-ms,application/vnd.ms-jumplist-automatic-destinations,true,true,true,false,true,true,true
+system,Microsoft Bitmap Font File,fon,application/vnd.ms-fon,true,true,true,false,true,true,true
+system,Microsoft Compressed HTML Help File,chm,application/vnd.ms-htmlhelp,true,true,true,false,true,true,true
+system,Microsoft Custom Jumplist,customdestinations-ms,application/vnd.ms-jumplist-custom-destinations,true,true,true,false,true,true,true
+system,Microsoft Form 2.0 Object,,application/vnd.ms-form-object,true,true,true,false,true,true,true
+system,Microsoft Hyperlink Record,,application/vnd.ms-hyperlink-record,true,true,true,false,true,true,true
+system,Microsoft OLE2 Standard Link,,application/vnd.ms-ole2-std-link,true,true,true,false,true,true,true
+system,Microsoft Outlook Block,dat,application/vnd.ms-outlook-block,true,true,true,false,true,true,true
+system,Microsoft Outlook Property Block,msg,application/vnd.ms-outlook-property-block,true,true,true,false,true,true,true
+system,Microsoft Precompiled Setup Information,pnf,application/vnd.ms-pnf,true,true,true,false,true,true,true
+system,Microsoft Recent File Cache,bcf,application/vnd.ms-windows-recent-file-cache,true,true,true,false,true,true,true
+system,Microsoft Recent File Cache Entry,,application/vnd.ms-windows-recent-file-cache-entry,true,true,true,false,true,true,true
+system,"Microsoft Recycle Bin deleted file information file (Vista, Windows 7 and Windows 8)",,application/vnd.ms-recycle-bin-deleted-file-info,true,true,true,false,true,true,true
+system,Microsoft Registry Decoded Data,,application/vnd.ms-registry-decoded,true,true,true,false,true,true,true
+system,Microsoft Registry Key,,application/vnd.ms-registry-key,true,true,true,false,true,true,true
+system,Microsoft Security Catalog,cat,application/vnd.ms-pkiseccat,true,true,true,false,true,true,true
+system,Microsoft Shortcut,lnk,application/vnd.ms-shortcut,true,true,true,false,true,true,true
+system,Microsoft Windows Animated Cursor Image,ani,image/vnd.ms-ani,true,true,true,false,true,true,true
+system,Microsoft Windows Help File,hlp,application/vnd.ms-windows-help,true,true,true,false,true,true,true
+system,Microsoft Windows Icon Image,ico,image/vnd.microsoft.icon,true,true,true,false,true,true,true
+system,Microsoft Windows Kernel Mini-Dump File,dmp,application/vnd.ms-windows-kernel-mini-dump,true,true,true,false,true,true,true
+system,Microsoft Windows Mini-Dump File,mdmp,application/vnd.ms-windows-mini-dump,true,true,true,false,true,true,true
+system,Microsoft Windows Prefetch File,pf,application/vnd.ms-windows-prefetch,true,true,true,false,true,true,true
+system,Microsoft Windows Side-by-Side (SxS) Manifest File,xml,application/vnd.ms-sxs-manifest+xml,true,true,true,false,true,true,true
+system,NTFS File Record,,filesystem/x-ntfs-file-record,true,true,true,false,true,true,true
+system,NTFS Index Record,,filesystem/x-ntfs-index-record,true,true,true,false,true,true,true
+system,NTFS LogFile,,filesystem/x-ntfs-logfile,true,true,true,false,true,true,true
+system,NTFS LogFile Record,,filesystem/x-ntfs-logfile-record,true,true,true,false,true,true,true
+system,NTFS Master File Table,,filesystem/x-ntfs-mft,true,true,true,false,true,true,true
+system,NTFS UsnJrnl File,,filesystem/x-ntfs-usnjrnl,true,true,true,false,true,true,true
+system,NTFS UsnJrnl Record,,filesystem/x-ntfs-usnjrnl-record,true,true,true,false,true,true,true
+system,NTFS Volume Shadow Catalog,,filesystem/x-ntfs-vss-catalog,true,true,true,false,true,true,true
+system,Native Language Support File,nls,application/x-nls,true,true,true,false,true,true,true
+system,NeXTSTEP/MacOS Property List,plist,application/x-plist,true,true,true,false,true,true,true
+system,NeXTSTEP/MacOS Property List Node,,application/x-plist-node,true,true,true,false,true,true,true
+system,OpenType Font,otf,application/vnd.ms-opentype,true,true,true,false,true,true,true
+system,Python Byte Code,pyc,application/x-python-byte-code,true,true,true,false,true,true,true
+system,Recyclebin Pre-Vista Windows Index File,,application/vnd.ms-recycle-bin-pre-vista-deleted-files-index,true,true,true,false,true,true,true
+system,Recyclebin Pre-Vista Windows Record,,application/vnd.ms-recycle-bin-pre-vista-deleted-file-info,true,true,true,false,true,true,true
+system,Ruby Interactive Documentation Files,ri,application/ruby-interactive,true,true,true,false,true,true,true
+system,Setup API Windows 7 and 8 File,log,application/vnd.ms-windows-setup-api-win7-win8-log,true,true,true,false,true,true,true
+system,Setup API Windows XP File,log,application/vnd.ms-windows-setup-api-xp-log,true,true,true,false,true,true,true
+system,Socket,,filesystem/socket,true,true,true,false,true,true,true
+system,Sun JRE Timezone Data,,application/vnd.sun-jre-timezone,true,true,true,false,true,true,true
+system,Symantec KVS IIS File,,application/vnd.symantec-kvs-iis,true,true,true,false,true,true,true
+system,Symbolic Link,,filesystem/symlink,true,true,true,false,true,true,true
+system,TrueType Font,ttf,application/x-font-ttf,true,true,true,false,true,true,true
+system,TrueType Font Collection,ttc,application/x-font-ttc,true,true,true,false,true,true,true
+system,Type 1 Font,pfm,application/x-font-type1,true,true,true,false,true,true,true
+system,UNIX/Linux ELF Executable,,application/x-elf,true,true,true,false,true,true,true
+system,Windows Dynamic Link Library,dll,application/dll,true,true,true,false,true,true,true
+system,Windows Executable,exe,application/exe,true,true,true,false,true,true,true
+system,Windows Search History File,,application/vnd.ms-search-history,true,true,true,false,true,true,true
+system,X11 Font,pmf,application/x-font-pmf,true,true,true,false,true,true,true
+system,XSL Transformation File,xsl,application/xslt+xml,true,true,true,false,true,true,true
+unrecognised,Extensible Markup Language File,xml,application/xml,true,true,true,false,true,true,true
+unrecognised,Microsoft OLE2 File,,application/vnd.ms-ole2,true,true,true,false,true,true,true
+unrecognised,Plain Text,txt,text/plain,true,true,true,false,true,true,true
+unrecognised,Unknown Binary File,,application/octet-stream,true,true,true,false,true,true,true

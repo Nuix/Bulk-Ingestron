@@ -1,0 +1,11 @@
+{
+	"regeneratePdfs": false,
+	"updatePdf": true,
+	"updateText": true,
+	"textModification": "append",
+	"quality": "high_quality",
+	"rotation": "auto",
+	"deskew": true,
+	"languages": ["English"],
+	"ocrProfileName": ""
+}

@@ -1,0 +1,7 @@
+{
+	"workerCount": 8,
+	"workerMemory": null,
+	"workerTemp": null,
+	"embedBroker": true,
+	"brokerMemory": 4096
+}

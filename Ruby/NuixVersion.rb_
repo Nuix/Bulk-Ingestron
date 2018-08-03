@@ -1,0 +1,41 @@
+#==================================#
+# Class for comparing Nuix version #
+#==================================#
+class NuixVersion
+	include Comparable
+
+	attr_accessor :major
+	attr_accessor :minor
+	attr_accessor :build
+
+	def initialize(major,minor=0,build=0)
+		@major = major
+		@minor = minor
+		@build = build
+	end
+
+	def self.parse(string)
+		return new(*string.strip.split("\.").map{|n|n.to_i})
+	end
+
+	def self.current
+		version_string = NUIX_VERSION
+		parts = version_string.split(".").map{|p|p.to_i}
+		return new(*parts)
+	end
+
+	def to_s
+	  return [@major,@minor,@build].join(".")
+	end
+
+	def <=>(other)
+		case other
+		when String
+			other = NuixVersion.parse(other)
+		when Numeric
+			other = NuixVersion.parse(other.to_s)
+		end
+
+		return [@major,@minor,@build] <=> [other.major,other.minor,other.build]
+	end
+end

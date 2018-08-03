@@ -1,0 +1,130 @@
+require "time"
+
+class SleepScheduler
+	class << self
+		attr_accessor :schedule_data
+
+		def get_day_name
+			case Time.now.wday
+				when 0
+					return "sunday"
+				when 1
+					return "monday"
+				when 2
+					return "tuesday"
+				when 3
+					return "wednesday"
+				when 4
+					return "thursday"
+				when 5
+					return "friday"
+				else
+					return "saturday"
+			end
+		end
+
+		def sleep_scheduled_today?
+			day_data = @schedule_data[get_day_name.to_sym]
+			if !day_data.nil?
+				start = day_data[:sleep_start]
+				stop = day_data[:sleep_stop]
+				if !start.nil? && !start.strip.empty? && !stop.nil? && !stop.strip.empty?
+					return true
+				end
+			end
+			return false
+		end
+
+		def sleep_now?
+			if sleep_scheduled_today?
+				sleep_times = @schedule_data[get_day_name.to_sym]
+				now = Time.now
+				if now >= Time.parse(sleep_times[:sleep_start]) && now <= Time.parse(sleep_times[:sleep_stop])
+					return true
+				else
+					return false
+				end
+			else
+				return false
+			end
+		end
+
+		def todays_sleep_schedule
+			sleep_times = @schedule_data[get_day_name.to_sym]
+			if sleep_scheduled_today?
+				return "#{get_day_name.capitalize}: #{sleep_times[:sleep_start]} - #{sleep_times[:sleep_stop]}"
+			else
+				return "#{get_day_name.capitalize}: No sleep scheduled today"
+			end
+		end
+
+		def todays_stop
+			if sleep_scheduled_today?
+				sleep_times = @schedule_data[get_day_name.to_sym]
+				return sleep_times[:sleep_stop]
+			else
+				return ""
+			end
+		end
+
+		def load_schedule_data(path)
+			@schedule_data = JSON.parse(File.read(path),:symbolize_names => true)
+		end
+
+		def sleep_until_stop(report_interval_minutes=15)
+			last_report = Time.now - (report_interval_minutes*61)
+			while sleep_now?
+				if Time.now - last_report > report_interval_minutes * 60
+					seconds_left = (Time.parse(todays_stop) - Time.now)
+					puts "Sleeping until #{todays_stop}, #{Time.at(seconds_left).gmtime.strftime("%H:%M:%S")} from now..."
+					last_report = Time.now
+				end
+				sleep(15)
+			end
+			puts "Current Time: #{Time.now}"
+			puts "Waking back up..."
+		end
+	end
+end
+
+=begin
+
+data = {
+	:sunday => {
+		:sleep_start => "",
+		:sleep_stop => "",
+	},
+	:monday => {
+		:sleep_start => "4:30 AM",
+		:sleep_stop => "5:45 PM",
+	},
+	:tuesday => {
+		:sleep_start => "",
+		:sleep_stop => "",
+	},
+	:wednesday => {
+		:sleep_start => "",
+		:sleep_stop => "",
+	},
+	:thursday => {
+		:sleep_start => "",
+		:sleep_stop => "",
+	},
+	:friday => {
+		:sleep_start => "",
+		:sleep_stop => "",
+	},
+	:saturday => {
+		:sleep_start => "",
+		:sleep_stop => "",
+	},
+}
+
+SleepScheduler.schedule_data = data
+puts SleepScheduler.schedule_data
+puts SleepScheduler.get_day_name
+puts SleepScheduler.sleep_scheduled_today?
+puts SleepScheduler.todays_sleep_schedule
+puts "Sleep Now?: #{SleepScheduler.sleep_now?}"
+
+=end

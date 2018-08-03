@@ -1,0 +1,10 @@
+{
+	"sleepBetweenJobs": 15,
+	"ignoreUnknownMimeTypes": false,
+	"allowCaseMigration": false,
+	"additionalReportingScope": null,
+	"performIngestion": true,
+	"performOcrPostIngestion": false,
+	"postIngestionOcrQuery": "-content:*",
+	"keyStoreFile": ""
+}

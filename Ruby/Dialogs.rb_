@@ -1,0 +1,217 @@
+#==================================#
+# Provides some basic Java dialogs #
+#==================================#
+require 'java'
+java_import javax.swing.JOptionPane
+java_import javax.swing.JFileChooser
+java_import javax.swing.filechooser.FileNameExtensionFilter
+java_import javax.swing.JDialog
+
+# This class provides convenience methods for displaying various Java GUI dialogs
+# @author Jason Wells
+class Dialogs
+	# Displays a plain message box dialog.
+	# @param [String] message The message shown in the dialog box body
+	# @param [String] title The title of the dialog box
+	def self.show_message(message,title="Message")
+		JOptionPane.showMessageDialog(nil,message,title,JOptionPane::PLAIN_MESSAGE)
+	end
+
+	# Displays an information message box dialog.
+	# @param [String] message The message shown in the dialog box body
+	# @param [String] title The title of the dialog box
+	def self.show_information(message,title="Information")
+		JOptionPane.showMessageDialog(nil,message,title,JOptionPane::INFORMATION_MESSAGE)
+	end
+
+	# Displays a warning message box dialog.
+	# @param [String] message The message shown in the dialog box body
+	# @param [String] title The title of the dialog box
+	def self.show_warning(message,title="Warning")
+		JOptionPane.showMessageDialog(nil,message,title,JOptionPane::WARNING_MESSAGE)
+	end
+
+	# Displays an error message box dialog.
+	# @param [String] message The message shown in the dialog box body
+	# @param [String] title The title of the dialog box
+	def self.show_error(message,title="Error")
+		JOptionPane.showMessageDialog(nil,message,title,JOptionPane::ERROR_MESSAGE)
+	end
+
+	# Displays a confirmation message box dialog.
+	# @param [String] message The message shown in the dialog box body
+	# @param [String] title The title of the dialog box
+	# @return [Boolean] True if yes was selected, otherwise false
+	def self.confirm_dialog(message,title="Confirm?")
+		return JOptionPane.showConfirmDialog(nil,message,title,JOptionPane::YES_NO_OPTION) == JOptionPane::YES_OPTION
+	end
+
+	# Displays a dialog allowing the user to pick one of several options.
+	# @param [String] message The message shown in the dialog box body
+	# @param [Array(String)] options The options to present the user with
+	# @param [String] default The default selection
+	# @param [String] title The title of the dialog box
+	# @return [String] The choice the user selected
+	def self.show_options(message,options,default=nil,title="Options")
+		if default.nil?
+			default = options[0]
+		end
+		choice = JOptionPane.showInputDialog(nil,message,title,JOptionPane::PLAIN_MESSAGE,nil,options.to_java(:Object),default)
+		return choice
+	end
+
+	# Displays a dialog with a text field input, allowing the user to input a single value
+	# @param [String] message The message shown in the dialog box body
+	# @param [String] initialValue The value intially shown in the dialog box
+	# @return [String] Value user input
+	def self.prompt_input(message,initialValue="")
+		return JOptionPane.showInputDialog(message,initialValue);
+	end
+
+	# Displays a File Chooser dialog to open a file
+	# @param [String] initial_directory What directory should the dialog start on
+	# @param [Hash] filters Hash containing information regarding extension filters
+	# @return [java.io.File] If the user selects a file a new java.io.File instance is returned,
+	#  otherwise nil is returned.
+	# @example Show open dialog for selecting a CSV file
+	#  prompt_open_file("C:\\SomeFolder\\",{"Comma Separated values (*.csv)"=>["csv"]})
+	def self.prompt_open_file(initial_directory=nil,filters=nil,title="Open")
+		fc = JFileChooser.new
+		fc.setDialogTitle(title)
+		if !filters.nil?
+			fnef = nil
+			filters.each do |k,v|
+				fnef = FileNameExtensionFilter.new(k,*v)
+				fc.addChoosableFileFilter(fnef)
+			end
+			fc.setFileFilter(fnef)
+		end
+
+		if !initial_directory.nil?
+			fc.setCurrentDirectory(java.io.File.new(initial_directory))
+		end
+
+		if fc.showOpenDialog(nil) == JFileChooser::APPROVE_OPTION
+			return fc.getSelectedFile
+		else
+			return nil
+		end
+	end
+
+	# Displays a File Chooser dialog to save a file
+	# @param [String] initial_directory What directory should the dialog start on
+	# @param [Hash] filters Hash containing information regarding extension filters
+	# @return [java.io.File] If the user selects a file a new java.io.File instance is returned,
+	#  otherwise nil is returned.
+	# @example Show save dialog for selecting a CSV file
+	#  prompt_save_file("C:\\SomeFolder\\",{"Comma Separated values (*.csv)"=>["csv"]})
+	def self.prompt_save_file(initial_directory=nil,filters=nil,title="Save")
+		fc = JFileChooser.new
+		fc.setDialogTitle(title)
+		if !filters.nil?
+			fnef = nil
+			filters.each do |k,v|
+				fnef = FileNameExtensionFilter.new(k,*v)
+				fc.addChoosableFileFilter(fnef)
+			end
+			fc.setFileFilter(fnef)
+		end
+
+		if !initial_directory.nil?
+			fc.setCurrentDirectory(java.io.File.new(initial_directory))
+		end
+
+		if fc.showSaveDialog(nil) == JFileChooser::APPROVE_OPTION
+			file = fc.getSelectedFile
+			unless file.getAbsolutePath =~ /\.#{fc.getFileFilter.getExtensions[0]}/i
+				file = java.io.File.new(file.getAbsolutePath + ".#{fc.getFileFilter.getExtensions[0]}")
+			end
+			return file
+		else
+			return nil
+		end
+	end
+
+	# Displays a dialog allowing the user to select a directory.
+	# @param [String] initial_directory The directory initially selected
+	# @return [java.io.File] If a directory is selected a java.io.File instance is returned,
+	#  otherwise nil
+	def self.prompt_directory(initial_directory=nil,title="Directory")
+		fc = JFileChooser.new
+		fc.setDialogTitle(title)
+		if !initial_directory.nil?
+			fc.setCurrentDirectory(java.io.File.new(initial_directory))
+		end
+		fc.setFileSelectionMode(JFileChooser::DIRECTORIES_ONLY)
+		if fc.showOpenDialog(nil) == JFileChooser::APPROVE_OPTION
+			file = fc.getSelectedFile
+			return file
+		else
+			return nil
+		end
+	end
+
+	# Convenience method around {prompt_open_file} for displaying an open file prompt for a CSV
+	# @param [String] initial_directory What directory should the dialog start on
+	# @return [java.io.File] If the user selects a file a new java.io.File instance is returned,
+	#  otherwise nil is returned.
+	def self.prompt_open_csv(initial_directory=nil,title="Open CSV")
+		return prompt_open_file(initial_directory,{"Comma Separated values (*.csv)"=>["csv"]},title)
+	end
+
+	# Convenience method around {prompt_save_file} for displaying a save file prompt for a CSV
+	# @param [String] initial_directory What directory should the dialog start on
+	# @return [java.io.File] If the user selects a file a new java.io.File instance is returned,
+	#  otherwise nil is returned.
+	def self.prompt_save_csv(initial_directory=nil,title="Save CSV")
+		return prompt_save_file(initial_directory,{"Comma Separated values (*.csv)"=>["csv"]},title)
+	end
+
+	# Convenience method around {prompt_open_file} for displaying an open file prompt for a TXT
+	# @param [String] initial_directory What directory should the dialog start on
+	# @return [java.io.File] If the user selects a file a new java.io.File instance is returned,
+	#  otherwise nil is returned.
+	def self.prompt_open_txt(initial_directory=nil,title="Open TXT")
+		return prompt_open_file(initial_directory,{"Text (*.txt)"=>["txt"]},title)
+	end
+
+	# Convenience method around {prompt_save_file} for displaying a save file prompt for a TXT
+	# @param [String] initial_directory What directory should the dialog start on
+	# @return [java.io.File] If the user selects a file a new java.io.File instance is returned,
+	#  otherwise nil is returned.
+	def self.prompt_save_txt(initial_directory=nil,title="Save TXT")
+		return prompt_save_file(initial_directory,{"Text (*.txt)"=>["txt"]},title)
+	end
+
+	# Convenience method around {prompt_open_file} for displaying an open file prompt for a SQLite DB
+	# @param [String] initial_directory What directory should the dialog start on
+	# @return [java.io.File] If the user selects a file a new java.io.File instance is returned,
+	#  otherwise nil is returned.
+	def self.prompt_open_db(initial_directory=nil,title="Open SQLite DB")
+		return prompt_open_file(initial_directory,{"SQLite Database (*.db)"=>["db"]},title)
+	end
+
+	# Convenience method around {prompt_save_file} for displaying a save file prompt for a SQLite DB
+	# @param [String] initial_directory What directory should the dialog start on
+	# @return [java.io.File] If the user selects a file a new java.io.File instance is returned,
+	#  otherwise nil is returned.
+	def self.prompt_save_db(initial_directory=nil,title="Save SQLite DB")
+		return prompt_save_file(initial_directory,{"SQLite Database (*.db)"=>["db"]},title)
+	end
+
+	# Convenience method around {prompt_open_file} for displaying an open file prompt for a XLS
+	# @param [String] initial_directory What directory should the dialog start on
+	# @return [java.io.File] If the user selects a file a new java.io.File instance is returned,
+	#  otherwise nil is returned.
+	def self.prompt_open_xls(initial_directory=nil,title="Open XLS")
+		return prompt_open_file(initial_directory,{"Excel XLS (*.xls)"=>["xls"]},title)
+	end
+
+	# Convenience method around {prompt_save_file} for displaying an open file prompt for a XLS
+	# @param [String] initial_directory What directory should the dialog start on
+	# @return [java.io.File] If the user selects a file a new java.io.File instance is returned,
+	#  otherwise nil is returned.
+	def self.prompt_save_xls(initial_directory=nil,title="Save XLS")
+		return prompt_save_file(initial_directory,{"Excel XLS (*.xls)"=>["xls"]},title)
+	end
+end

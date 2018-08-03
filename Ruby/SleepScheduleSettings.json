@@ -1,0 +1,30 @@
+{
+	"sunday": {
+		"sleep_start": "",
+		"sleep_stop": ""
+	},
+	"monday": {
+		"sleep_start": "",
+		"sleep_stop": ""
+	},
+	"tuesday": {
+		"sleep_start": "",
+		"sleep_stop": ""
+	},
+	"wednesday": {
+		"sleep_start": "",
+		"sleep_stop": ""
+	},
+	"thursday": {
+		"sleep_start": "",
+		"sleep_stop": ""
+	},
+	"friday": {
+		"sleep_start": "",
+		"sleep_stop": ""
+	},
+	"saturday": {
+		"sleep_start": "",
+		"sleep_stop": ""
+	}
+}

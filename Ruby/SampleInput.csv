@@ -1,0 +1,5 @@
+Case Name,Case Directory,Cluster Name,Evidence Name,Evidence Comments,Custodian,Source Path,CustomMetadata1,CustomMetadata2
+CaseA,C:\@NUIX\Cases\CaseA,,Evidence A,Comment A,W. Coyote,C:\@NUIX\Natives\ToIngest\Data1,Red,Hot
+CaseB,C:\@NUIX\Cases\CaseB,,Evidence B,Comment B,D. Who,C:\@NUIX\Natives\ToIngest\Data2,Blue,Cold
+CaseC,C:\@NUIX\Cases\CaseC,,Evidence C,Comment C,L. Skywalker,C:\@NUIX\Natives\ToIngest\Data3,Green,
+CaseD,C:\@NUIX\Cases\CaseD,,Evidence D,Comment D,N. Existed,C:\NotA\Valid\Path,,Warm
