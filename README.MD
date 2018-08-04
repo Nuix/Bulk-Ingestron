@@ -57,9 +57,9 @@ This JSON file contains settings not specific to Nuix.
 - **allowCaseMigration**: When `true` you are giving Nuix permission to migrate older cases which may be opened by this script to the current version of Nuix running the script.  When `false` you are denying permission to Nuix to migrate cases.  If this is set to `false` and the case requires migration, the particular ingestion will be skipped.
 - **additionalReportingScope**:  When ingestion completes, some numbers are gather and recorded regarding evidence total items, evidence audited items, etc.  These numbers are scoped to the evidence just added.  This setting allows you to specify additional scoping criteria in the form of a Nuix query.  This allows you to further excluded what items may be reported, for example to excluded certain kinds of error items.  If this value is `null` or empty, it has no effect.
 - **performIngestion**: Allows you to turn off the ingestion step.  This setting is intended to be set to `false` only when `performOcrPostIngestion` is set to `true`.  The intended use is to allow you to run the script in an OCR only pass, using the same input file used to perform the ingestions.
-- **performOcrPostIngestion**: Determines whether OCR will be performed against the items just ingested.  When `true` OCR will be performed.  When `false` no OCR will be performed.  Items which are OCR'ed when `true` will be limited to items present in the just added evidence and those responsive to the query provided in `postIngestionOcrQuery`.  Settings used to perform OCR are specified in the file [OcrSettings.json](#ocrsetting-json) and worker settings used are determined by those provided in [ParallelProcessingSettings.json](#parallelprocessingsettings-json).
+- **performOcrPostIngestion**: Determines whether OCR will be performed against the items just ingested.  When `true` OCR will be performed.  When `false` no OCR will be performed.  Items which are OCR'ed when `true` will be limited to items present in the just added evidence and those responsive to the query provided in `postIngestionOcrQuery`.  Settings used to perform OCR are specified in the file [OcrSettings.json](#user-content-ocrsettingjson) and worker settings used are determined by those provided in [ParallelProcessingSettings.json](#user-content-parallelprocessingsettingsjson).
 - **postIngestionOcrQuery**: In addition to being scoped to the evidence just added, this query determines which items will be OCR'ed when `performOcrPostIngestion` is `true`.
-- **keyStoreFile**: If a path to a key store CSV is provided for this setting, keystore entries will be added to the processor before each ingestion.  See [Key Store File](#key-store-file) for more details.  **Note:** In JSON a `\` is a special character so when providing a path to a key store file using this setting `\` needs to be escaped as `\\`.  For example `C:\Path\KeyStoreData.csv` needs to be provided as `"C:\\Path\\KeyStoreData.csv"`.
+- **keyStoreFile**: If a path to a key store CSV is provided for this setting, keystore entries will be added to the processor before each ingestion.  See [Key Store File](#user-content-keystorefile) for more details.  **Note:** In JSON a `\` is a special character so when providing a path to a key store file using this setting `\` needs to be escaped as `\\`.  For example `C:\Path\KeyStoreData.csv` needs to be provided as `"C:\\Path\\KeyStoreData.csv"`.
 
 ### MimeTypeSettings.csv
 
@@ -81,7 +81,7 @@ You can specify what will or will not be processed for various Mime Types by set
 
 **Note:** If a record is not present for a given type, nothing is set and Nuix will use it's defaults for that type (see API doc link above).
 
-**Important:** When the script loads mime type settings from [MimeTypeSettings.csv](#mimetypesettings-csv) they will be checked against those present in your version of Nuix.  Depending on your configuration, unrecognized mime types will either be ignored or the script will halt.  See [GeneralSettings.json](#generalsettings-json) for details.
+**Important:** When the script loads mime type settings from [MimeTypeSettings.csv](#user-content-mimetypesettingscsv) they will be checked against those present in your version of Nuix.  Depending on your configuration, unrecognized mime types will either be ignored or the script will halt.  See [GeneralSettings.json](#user-content-generalsettingsjson) for details.
 
 ### SleepScheduleSettings.json
 
@@ -206,14 +206,13 @@ This file is where you may provide Elastic Search cluster information which will
 
 The `clusters` array can contain one or more hashes, each of which can contain the following:
 
-```table
-Key | Description
-**notes** | This entry is for your own notes and will be ignored/not provided to Nuix.
-**cluster.name** | The name of the cluster.  This is also the name you would provide in your input CSV for **Cluster Name**.
-**index.number_of_shards** | See [Nuix docs](https://download.nuix.com/releases/desktop/stable/docs/en/scripting/api/nuix/CaseFactory.html#create-java.io.File-java.util.Map-).
-**index.number_of_replicas** | See [Nuix docs](https://download.nuix.com/releases/desktop/stable/docs/en/scripting/api/nuix/CaseFactory.html#create-java.io.File-java.util.Map-).
-**nuix.transport.hosts** | See [Nuix docs](https://download.nuix.com/releases/desktop/stable/docs/en/scripting/api/nuix/CaseFactory.html#create-java.io.File-java.util.Map-).
-```
+| Key | Description |
+|-----|-------------|
+| `notes` | This entry is for your own notes and will be ignored/not provided to Nuix. |
+| `cluster.name` | The name of the cluster.  This is also the name you would provide in your input CSV for **Cluster Name**. |
+| `index.number_of_shards` | See [Nuix docs](https://download.nuix.com/releases/desktop/stable/docs/en/scripting/api/nuix/CaseFactory.html#create-java.io.File-java.util.Map-). |
+| `index.number_of_replicas` | See [Nuix docs](https://download.nuix.com/releases/desktop/stable/docs/en/scripting/api/nuix/CaseFactory.html#create-java.io.File-java.util.Map-). |
+| `nuix.transport.hosts` | See [Nuix docs](https://download.nuix.com/releases/desktop/stable/docs/en/scripting/api/nuix/CaseFactory.html#create-java.io.File-java.util.Map-). |
 
 If a given script run will not be creating any Elastic Search based Nuix cases, this can be ignored.
 
@@ -223,13 +222,15 @@ If a given script run will not be creating any Elastic Search based Nuix cases, 
 
 Input CSV is expected to have a headers row.  It is also expected to have the following columns in the following order with these exact headers:
 
-- **Case Name**: What to name the case if it needs to be created.
-- **Case Directory**: The directory of the case to use.  If the case does not exist it will be created.  If the case does exist it will be opened.
-- **Cluster Name**: If this row will be creating a case that does not already exist and the case to be created is an elastic search case, this is where you provide a cluster name as noted in `ElasticCaseSettings.json` as `cluster.name` that the case should be created in.  Note that value provided here should match exactly the value specified in `ElasticCaseSettings.json` for `cluster.name`.  See [here](#elasticcasesettings-json) for more details about this settings file.
-- **Evidence Name**: Name of the evidence to be created.
-- **Evidence Comments**: Comments which will be applied to the evidence container item.
-- **Custodian**: The custodian to assign to the evidence.
-- **Source Path**: The path to the source data.  If this is a directory Nuix will ingest all data in the directory.  If this is a absolute file path, just the file will be processed.
+| Column | Description |
+|--------|-------------|
+| `Case Name` | What to name the case if it needs to be created. |
+| `Case Directory` | The directory of the case to use.  If the case does not exist it will be created.  If the case does exist it will be opened. |
+| `Cluster Name` | If this row will be creating a case that does not already exist and the case to be created is an elastic search case, this is where you provide a cluster name as noted in `ElasticCaseSettings.json` as `cluster.name` that the case should be created in.  Note that value provided here should match exactly the value specified in `ElasticCaseSettings.json` or `cluster.name`.  See the section regarding `ElasticSearchSettings.json` for more details about this settings file. |
+| `Evidence Name` | Name of the evidence to be created. |
+| `Evidence Comments` | Comments which will be applied to the evidence container item. |
+| `Custodian` | The custodian to assign to the evidence. |
+| `Source Path` | The path to the source data.  If this is a directory Nuix will ingest all data in the directory.  If this is a absolute file path, just the file will be processed. |
 
 You may in addition add columns with whatever header names you would like.  Any additional columns are added as custom metadata to the evidence container using the headers as the custom metadata name and cell value as the value to assign.
 
@@ -247,20 +248,18 @@ When the general settings JSON file contains the path to a CSV file, the entries
 
 The key store CSV is expected to have the following columns in this order, with headers:
 
-```table
-Column | Description
-**KeyFile** | The absolute path to an appropriate key file.
-**Password** | The password Nuix will use to access this key file.
-**TargetEvidenceName** | *(optional)* If a value if provided, this key will only be loaded to the key store while processing the evidence with the same name in the input CSV.  Names are matched case insensitive.
-```
+| Column | Description |
+|--------|-------------|
+| `KeyFile` | The absolute path to an appropriate key file. |
+| `Password` | The password Nuix will use to access this key file. |
+| `TargetEvidenceName` | *(optional)* If a value if provided, this key will only be loaded to the key store while processing the evidence with the same name in the input CSV.  Names are matched case insensitive. |
 
 An example key file CSV might look something like this:
 
-```table
-KeyFile | Password | TargetEvidenceName
-C:\Keys\NsfKey01.id | secretpassword | 
-C:\Keys\NsfKey02.id | mittensthekitten | Evidence001
-```
+| KeyFile | Password | TargetEvidenceName |
+|---------|----------|--------------------|
+| `C:\Keys\NsfKey01.id` | `secretpassword` | |
+| `C:\Keys\NsfKey02.id` | `mittensthekitten` | `Evidence001` |
 
 See included `ExampleKeyStoreFile.csv` for a starter template CSV.
 
@@ -323,3 +322,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+[setProcessingSettings]: https://download.nuix.com/releases/desktop/stable/docs/en/scripting/api/nuix/Processor.html#setProcessingSettings-java.util.Map-
+[setParallelProcessingSettings]: https://download.nuix.com/releases/desktop/stable/docs/en/scripting/api/nuix/ParallelProcessingConfigurable.html#setParallelProcessingSettings-java.util.Map-
+[setMimeTypeProcessingSettings]: https://download.nuix.com/releases/desktop/stable/docs/en/scripting/api/nuix/Processor.html#setMimeTypeProcessingSettings-java.lang.String-java.util.Map-
+[GeneralSettings.json]: #user-content-generalsettingsjson
+[MimeTypeSettings.csv]: #user-content-mimetypesettingscsv
+[OcrSettings.json]: #user-content-ocrsettingsjson
