@@ -1,7 +1,7 @@
 Bulk Ingestron
 ==============
 
-![This script was last tested in Nuix 7.8](https://img.shields.io/badge/Script%20Tested%20in%20Nuix-7.8-green.svg)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0) ![This script was last tested in Nuix 7.8](https://img.shields.io/badge/Script%20Tested%20in%20Nuix-7.8-green.svg)
 
 View the GitHub project [here](https://github.com/Nuix/Bulk-Ingestron) or download the latest release [here](https://github.com/Nuix/Bulk-Ingestron/releases).
 
@@ -60,6 +60,7 @@ This JSON file contains settings not specific to Nuix.
 - **performOcrPostIngestion**: Determines whether OCR will be performed against the items just ingested.  When `true` OCR will be performed.  When `false` no OCR will be performed.  Items which are OCR'ed when `true` will be limited to items present in the just added evidence and those responsive to the query provided in `postIngestionOcrQuery`.  Settings used to perform OCR are specified in the file [OcrSettings.json](#user-content-ocrsettingjson) and worker settings used are determined by those provided in [ParallelProcessingSettings.json](#user-content-parallelprocessingsettingsjson).
 - **postIngestionOcrQuery**: In addition to being scoped to the evidence just added, this query determines which items will be OCR'ed when `performOcrPostIngestion` is `true`.
 - **keyStoreFile**: If a path to a key store CSV is provided for this setting, keystore entries will be added to the processor before each ingestion.  See [Key Store File](#user-content-keystorefile) for more details.  **Note:** In JSON a `\` is a special character so when providing a path to a key store file using this setting `\` needs to be escaped as `\\`.  For example `C:\Path\KeyStoreData.csv` needs to be provided as `"C:\\Path\\KeyStoreData.csv"`.
+- **workerSideScriptFile**: If a path to a Ruby worker side script file is provided for this setting, the contents of that file will be provided to Nuix as the worker side script to use during processing. **Note:** In JSON a `\` is a special character so when providing a path to a worker side script file using this setting `\` needs to be escaped as `\\`.  For example `C:\Path\WSS.rb` needs to be provided as `"C:\\Path\\WSS.rb"`.
 
 ### MimeTypeSettings.csv
 

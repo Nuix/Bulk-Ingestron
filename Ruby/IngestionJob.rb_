@@ -52,8 +52,11 @@ class IngestionJob
 		def load_general_settings(path)
 			Logger.log("Loading General Settings: #{path}")
 			@general_settings = JSON.parse(File.read(path))
+
+			# Configure key store if we have settings telling us to do so
 			if @general_settings.has_key?("keyStoreFile")
-				if !@general_settings["keyStoreFile"].strip.empty?
+				key_store_file = @general_settings["keyStoreFile"]
+				if key_store_file.nil? == false && key_store_file.strip.empty? == false
 					if java.io.File.new(@general_settings["keyStoreFile"]).exists
 						key_store_file = @general_settings["keyStoreFile"]
 						Logger.log("Loading key store data from: #{key_store_file}")
@@ -73,6 +76,15 @@ class IngestionJob
 						end
 						Logger.log("Loaded #{@key_store_data.size} key entries")
 					end
+				end
+			end
+
+			# Configure worker side script if we have settings telling us to do so
+			if @general_settings.has_key?("workerSideScriptFile")
+				wss_file = @general_settings["workerSideScriptFile"]
+				if wss_file.nil? == false && wss_file.strip.empty? == false && java.io.File.new(wss_file).exists
+					@wss = File.read(wss_file)
+					@processing_settings["workerItemCallback"] = "ruby:#{@wss}"
 				end
 			end
 		end
@@ -211,6 +223,11 @@ class IngestionJob
 			if @general_settings["performOcrPostIngestion"]
 				Logger.log("== OCR Settings ==")
 				@ocr_settings.each{|k,v| Logger.log("\t#{k} => #{denil(v)}") }
+			end
+
+			if @general_settings["workerSideScriptFile"]
+				Logger.log("== Worker Side Script ==")
+				Logger.log("File: #{@general_settings["workerSideScriptFile"]}")
 			end
 		end
 

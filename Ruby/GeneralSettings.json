@@ -6,5 +6,6 @@
 	"performIngestion": true,
 	"performOcrPostIngestion": false,
 	"postIngestionOcrQuery": "-content:*",
-	"keyStoreFile": ""
+	"keyStoreFile": "",
+	"workerSideScriptFile": null
 }
