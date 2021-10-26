@@ -1,7 +1,7 @@
 Bulk Ingestron
 ==============
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0) ![This script was last tested in Nuix 7.8](https://img.shields.io/badge/Script%20Tested%20in%20Nuix-7.8-green.svg)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0) ![This script was last tested in Nuix 9.4](https://img.shields.io/badge/Script%20Tested%20in%20Nuix-9.4-green.svg)
 
 View the GitHub project [here](https://github.com/Nuix/Bulk-Ingestron) or download the latest release [here](https://github.com/Nuix/Bulk-Ingestron/releases).
 
@@ -18,7 +18,7 @@ This script provides a way to bulk ingest data into one or more cases based on a
 Begin by downloading the latest release of this code.  Extract the contents of the archive into a directory.  Configure the various settings files as noted below.  Build an input CSV (see included example for template).  Run `BulkIngestron.rb` via `nuix_console.exe` with a command such as:
 
 ```
-"C:\Program Files\Nuix\Nuix 7.4\nuix_console.exe" ^
+"C:\Program Files\Nuix\Nuix 9.4\nuix_console.exe" ^
 -Dfile.encoding=utf8 ^
 -Xms2g -Xmx24g ^
 -licencesourcetype dongle ^
@@ -264,6 +264,10 @@ An example key file CSV might look something like this:
 
 See included `ExampleKeyStoreFile.csv` for a starter template CSV.
 
+### Passwords File
+
+If a `Passwords.txt` file is found in the script directory, its contents will be provided as a password list during ingestion for Nuix to attempt to use to decrypt some data.
+
 ## Output Files
 
 While running three files are created and updated, named with a timestamp.
@@ -309,7 +313,7 @@ While running three files are created and updated, named with a timestamp.
 # License
 
 ```
-Copyright 2018 Nuix
+Copyright 2021 Nuix
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
