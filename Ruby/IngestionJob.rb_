@@ -24,10 +24,24 @@ class IngestionJob
 		attr_accessor :mime_type_settings
 		attr_accessor :elastic_case_settings
 
+		attr_accessor :passwords
+
 		attr_accessor :error_report_path
 		attr_accessor :success_report_path
 
 		attr_accessor :key_store_data
+
+		def load_passwords_file(path)
+			if !path.nil?
+				Logger.log("Loading password from: #{path}")
+				if !java.io.File.new(path).exists
+					Logger.log("Password file does not exist: #{path}")
+				else
+					@passwords = File.read(path).split(/\r?\n/).map{|p|p.trim}
+					Logger.log("Loaded #{passwords.size} passwords from #{path}")
+				end
+			end
+		end
 
 		def load_processing_settings(path)
 			Logger.log("Loading Processing Settings: #{path}")
@@ -572,6 +586,15 @@ class IngestionJob
 					end
 				else
 					Logger.log("No Key Store Data to Load")
+				end
+
+				# Load up passwords if we have them
+				if !IngestionJob.passwords.nil? && IngestionJob.passwords.size > 0
+					passwords = IngestionJob.passwords.map{|pw| pw.chars.to_java(:char) }
+					list_name = "BulkIngestronPasswordList_#{@evidence_name}"
+					Logger.log("Configuring password list '#{list_name}' with #{passwords.size} passwords")
+					processor.addPasswordList(list_name,passwords)
+					processor.setPasswordDiscoverySettings({"mode" => "word-list", "word-list" => list_name})
 				end
 
 				semaphore = Mutex.new

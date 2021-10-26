@@ -33,6 +33,7 @@ Logger.log_file = File.join(log_directory,"#{time_stamp}_Log.txt")
 Logger.log("Log File: #{Logger.log_file}")
 
 #Load settings JSON/CSV files
+IngestionJob.load_passwords_file(File.join(script_directory,"Passwords.txt"))
 IngestionJob.load_processing_settings(File.join(script_directory,"ProcessingSettings.json"))
 IngestionJob.load_ocr_settings(File.join(script_directory,"OcrSettings.json"))
 IngestionJob.load_parallel_processing_settings(File.join(script_directory,"ParallelProcessingSettings.json"))
