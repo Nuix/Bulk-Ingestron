@@ -37,7 +37,7 @@ class IngestionJob
 				if !java.io.File.new(path).exists
 					Logger.log("Password file does not exist: #{path}")
 				else
-					@passwords = File.read(path).split(/\r?\n/).map{|p|p.trim}
+					@passwords = File.read(path).split(/\r?\n/).map{|p|p.strip}
 					Logger.log("Loaded #{passwords.size} passwords from #{path}")
 				end
 			end
